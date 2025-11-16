@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifications - Manager Panel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    .sidebar-bg {
+      background: linear-gradient(180deg, #0ea5e9, #3b82f6, #60a5fa);
+    }
+    .unread-dot {
+      width: 10px;
+      height: 10px;
+      background: #3b82f6;
+      border-radius: 50%;
+    }
+    .notification-type-order {
+      background: linear-gradient(90deg, #0ea5e9, #3b82f6);
+      color: white;
+    }
+    .notification-type-maintenance {
+      background: linear-gradient(90deg, #3b82f6, #60a5fa);
+      color: white;
+    }
+    .notification-type-refill {
+      background: linear-gradient(90deg, #60a5fa, #93c5fd);
+      color: white;
+    }
+    .notification-type-contract {
+      background: linear-gradient(90deg, #2563eb, #3b82f6);
+      color: white;
+    }
+  </style>
+</head>
+<body class="flex h-screen bg-gray-100 font-sans">
+
+  <!-- Sidebar -->
+  <aside class="w-64 sidebar-bg text-white flex flex-col">
+    <div class="p-6 flex flex-col items-center gap-2">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/LPG_gas_cylinder_icon.png" 
+           alt="Logo" class="w-16 h-16 rounded-full shadow-md bg-white p-1">
+      <h1 class="text-xl font-bold">BluePlanet</h1>
+      <span class="text-sm opacity-80">Manager Panel</span>
+    </div>
+    <nav class="mt-8 flex-1">
+      <a href="dashboard.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+      <a href="customers.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-users"></i> Customers</a>
+      <a href="services.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-gear"></i> Services</a>
+      <a href="contracts.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-file-contract"></i> Contracts</a>
+      <a href="orders.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-box"></i> Orders</a>
+      <a href="reports.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-chart-line"></i> Reports</a>
+      <a href="notifications.html" class="flex items-center px-6 py-3 bg-blue-800 transition rounded-md gap-3"><i class="fa-solid fa-bell"></i> Notifications</a>
+      <a href="settings.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-user-gear"></i> Settings</a>
+    </nav>
+    <div class="p-6">
+      <button class="w-full px-4 py-2 rounded-lg font-bold text-blue-600 bg-white hover:brightness-110">Logout</button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="flex-1 flex flex-col overflow-y-auto">
+    <!-- Topbar -->
+    <header class="flex justify-between items-center px-6 py-4 shadow-md bg-white sticky top-0 z-10">
+      <h2 class="text-2xl font-semibold text-gray-700">Notifications</h2>
+      <div class="flex items-center gap-4">
+        <div class="relative">
+          <input type="text" placeholder="Search notifications..." class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
+          <i class="fa-solid fa-magnifying-glass absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+        </div>
+      </div>
+    </header>
+
+    <!-- Notifications List -->
+    <main class="p-6 space-y-6">
+      <!-- Filters -->
+      <div class="flex gap-4 flex-wrap">
+        <button class="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition filter-btn" data-type="all">All</button>
+        <button class="px-4 py-2 rounded-lg notification-type-order hover:brightness-110 filter-btn" data-type="order">Orders</button>
+        <button class="px-4 py-2 rounded-lg notification-type-maintenance hover:brightness-110 filter-btn" data-type="maintenance">Maintenance</button>
+        <button class="px-4 py-2 rounded-lg notification-type-refill hover:brightness-110 filter-btn" data-type="refill">Refills</button>
+        <button class="px-4 py-2 rounded-lg notification-type-contract hover:brightness-110 filter-btn" data-type="contract">Contracts</button>
+      </div>
+
+      <!-- Notification Items -->
+      <div class="space-y-4">
+        <div class="bg-white rounded-xl shadow-md p-4 flex justify-between items-start gap-4 notification-item" data-type="order">
+          <div class="flex gap-4 items-start">
+            <div class="unread-dot mt-2"></div>
+            <div>
+              <p class="font-semibold text-gray-700">New Order #124</p>
+              <p class="text-gray-500 text-sm">Order from ABC Catering scheduled for delivery today at 14:00.</p>
+            </div>
+          </div>
+          <span class="text-gray-400 text-sm">2h ago</span>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md p-4 flex justify-between items-start gap-4 notification-item" data-type="maintenance">
+          <div class="flex gap-4 items-start">
+            <div class="unread-dot mt-2"></div>
+            <div>
+              <p class="font-semibold text-gray-700">Scheduled Maintenance</p>
+              <p class="text-gray-500 text-sm">Maintenance check for XYZ School scheduled tomorrow at 10:00.</p>
+            </div>
+          </div>
+          <span class="text-gray-400 text-sm">5h ago</span>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md p-4 flex justify-between items-start gap-4 notification-item" data-type="refill">
+          <div class="flex gap-4 items-start">
+            <div class="unread-dot mt-2"></div>
+            <div>
+              <p class="font-semibold text-gray-700">Refill Completed</p>
+              <p class="text-gray-500 text-sm">Cylinder refill for Home #56 completed by technician John Doe.</p>
+            </div>
+          </div>
+          <span class="text-gray-400 text-sm">1d ago</span>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md p-4 flex justify-between items-start gap-4 notification-item" data-type="contract">
+          <div class="flex gap-4 items-start">
+            <div class="unread-dot mt-2"></div>
+            <div>
+              <p class="font-semibold text-gray-700">New Contract Signed</p>
+              <p class="text-gray-500 text-sm">Contract signed by Catering Company ABC for bulk LPG supply.</p>
+            </div>
+          </div>
+          <span class="text-gray-400 text-sm">3d ago</span>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- JS for filtering notifications -->
+  <script>
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const notifications = document.querySelectorAll('.notification-item');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const type = btn.getAttribute('data-type');
+        notifications.forEach(n => {
+          if(type === 'all' || n.getAttribute('data-type') === type){
+            n.classList.remove('hidden');
+          } else {
+            n.classList.add('hidden');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

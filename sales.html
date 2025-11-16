@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sales Management - BluePlanet Utilities</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    .header-gradient {
+      background: linear-gradient(90deg, #0ea5e9, #3b82f6, #60a5fa);
+    }
+    .btn-gradient {
+      background: linear-gradient(90deg, #3b82f6, #0ea5e9);
+    }
+  </style>
+</head>
+<body class="flex h-screen bg-gray-100 font-sans">
+
+  <!-- Sidebar (reusable) -->
+  <aside class="w-64 bg-gradient-to-b from-blue-600 to-blue-400 text-white flex flex-col">
+    <div class="p-6 flex flex-col items-center gap-2">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/LPG_gas_cylinder_icon.png" 
+           alt="Logo" class="w-16 h-16 rounded-full shadow-md bg-white p-1">
+      <h1 class="text-xl font-bold">BluePlanet</h1>
+      <span class="text-sm opacity-80">Manager Panel</span>
+    </div>
+    <nav class="mt-8 flex-1">
+      <a href="admin.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+      <a href="customerManage.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-users"></i> Customers</a>
+      <a href="serviceManage.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-gear"></i> Services</a>
+      <a href="contracts.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-file-contract"></i> Contracts</a>
+      <a href="manageOrders.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-box"></i> Orders</a>
+	  <a href="sales.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-box"></i> Sales</a>
+      <a href="reports.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-chart-line"></i> Reports</a>
+      <a href="settings.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-user-gear"></i> Settings</a>
+    </nav>
+    <div class="p-6">
+      <button class="w-full px-4 py-2 rounded-lg font-bold text-blue-600 bg-white hover:brightness-110">Logout</button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="flex-1 flex flex-col overflow-y-auto">
+    <!-- Topbar -->
+    <header class="flex justify-between items-center px-6 py-4 shadow-md bg-white sticky top-0 z-10">
+      <h2 class="text-2xl font-semibold text-gray-700">Sales</h2>
+      <div class="flex items-center gap-4">
+        <div class="relative">
+          <input type="text" placeholder="Search Sales..." class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
+          <i class="fa-solid fa-magnifying-glass absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+        </div>
+        <button class="relative text-gray-600 hover:text-gray-800">
+          <i class="fa-solid fa-bell"></i>
+          <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Sales Table & Actions -->
+    <main class="p-6 space-y-6">
+      <!-- Summary Cards -->
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="widget-bg rounded-xl p-6 text-white shadow-md flex flex-col gap-2">
+          <h3 class="text-xl font-semibold">Total Sales</h3>
+          <p class="text-3xl font-bold">R125,450</p>
+          <p class="opacity-80">This Month</p>
+        </div>
+        <div class="widget-bg rounded-xl p-6 text-white shadow-md flex flex-col gap-2">
+          <h3 class="text-xl font-semibold">Completed Orders</h3>
+          <p class="text-3xl font-bold">132</p>
+          <p class="opacity-80">Delivered</p>
+        </div>
+        <div class="widget-bg rounded-xl p-6 text-white shadow-md flex flex-col gap-2">
+          <h3 class="text-xl font-semibold">Pending Payments</h3>
+          <p class="text-3xl font-bold">15</p>
+          <p class="opacity-80">Awaiting</p>
+        </div>
+      </div>
+
+      <!-- Filters & Actions -->
+      <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+        <div class="flex gap-2 items-center">
+          <input type="date" class="px-4 py-2 border border-gray-300 rounded-lg">
+          <input type="date" class="px-4 py-2 border border-gray-300 rounded-lg">
+          <button class="px-4 py-2 btn-gradient rounded-lg text-white font-medium hover:brightness-110">Filter</button>
+        </div>
+        <button class="px-4 py-2 btn-gradient rounded-lg text-white font-medium hover:brightness-110"><i class="fa-solid fa-plus mr-2"></i> New Sale</button>
+      </div>
+
+      <!-- Sales Table -->
+      <div class="overflow-x-auto bg-white rounded-xl shadow-md">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-blue-500 text-white">
+            <tr>
+              <th class="px-6 py-3 text-left text-sm font-semibold">Sale ID</th>
+              <th class="px-6 py-3 text-left text-sm font-semibold">Customer</th>
+              <th class="px-6 py-3 text-left text-sm font-semibold">Service</th>
+              <th class="px-6 py-3 text-left text-sm font-semibold">Amount</th>
+              <th class="px-6 py-3 text-left text-sm font-semibold">Date</th>
+              <th class="px-6 py-3 text-left text-sm font-semibold">Status</th>
+              <th class="px-6 py-3 text-center text-sm font-semibold">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            <tr class="hover:bg-gray-50 transition">
+              <td class="px-6 py-3">S-001</td>
+              <td class="px-6 py-3">Bright School</td>
+              <td class="px-6 py-3">Refill</td>
+              <td class="px-6 py-3">R450</td>
+              <td class="px-6 py-3">2025-11-10</td>
+              <td class="px-6 py-3"><span class="px-2 py-1 rounded-full text-white bg-green-500">Completed</span></td>
+              <td class="px-6 py-3 text-center flex justify-center gap-2">
+                <button class="px-2 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-600"><i class="fa-solid fa-eye"></i></button>
+                <button class="px-2 py-1 rounded-lg bg-red-500 text-white hover:bg-red-600"><i class="fa-solid fa-trash"></i></button>
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-50 transition">
+              <td class="px-6 py-3">S-002</td>
+              <td class="px-6 py-3">Catering Co.</td>
+              <td class="px-6 py-3">Installation</td>
+              <td class="px-6 py-3">R850</td>
+              <td class="px-6 py-3">2025-11-09</td>
+              <td class="px-6 py-3"><span class="px-2 py-1 rounded-full text-white bg-yellow-500">Pending</span></td>
+              <td class="px-6 py-3 text-center flex justify-center gap-2">
+                <button class="px-2 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-600"><i class="fa-solid fa-eye"></i></button>
+                <button class="px-2 py-1 rounded-lg bg-red-500 text-white hover:bg-red-600"><i class="fa-solid fa-trash"></i></button>
+              </td>
+            </tr>
+            <!-- Add more rows as needed -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

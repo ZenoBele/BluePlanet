@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | BluePlanet Utilities</title>
+  <script src="js/script.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: #131217;
+    }
+	
+	/* Center spreading underline on hover */
+.nav-link, .nav-link-mobile {
+  position: relative;
+  transition: color 0.3s ease;
+}
+.nav-link::after, .nav-link-mobile::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 50%;
+  background-color: #01b9f5;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+.nav-link:hover::after, .nav-link-mobile:hover::after {
+  width: 100%;
+  left: 0;
+}
+	
+	/* Bounce-in keyframes for initial entrance */
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(10px) scale(1.05);
+  }
+  80% {
+    transform: translateY(-5px) scale(0.98);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-bounce-in {
+  animation: bounceIn 0.8s forwards;
+}
+
+/* Continuous subtle button breathing */
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.animate-breathe {
+  animation: breathe 2s ease-in-out infinite;
+}
+
+/* Floating animation for image */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Bullet entrance animation */
+@keyframes slideFade {
+  0% { opacity: 0; transform: translateX(-50px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+  </style>
+</head>
+<body class="overflow-x-hidden">
+
+<!-- Logo (top-left, not fixed) -->
+<div class="flex items-center gap-4 bg-white mt-6 ml-10 md:ml-32 p-3 pr-6 w-fit">
+  <img 
+    src="https://media.istockphoto.com/id/162542504/photo/earth-sunrise-in-space.webp?a=1&b=1&s=612x612&w=0&k=20&c=ExRs1QVRkYOcXXEcr7nKzXlT2LCe63pV9bIGH5fSkMs=" 
+    alt="BluePlanet Utilities Logo" 
+    class="w-16 h-16 rounded-full shadow-md">
+  <div>
+    <h1 class="text-2xl md:text-3xl font-semibold text-blue-900">BluePlanet</h1>
+    <p class="text-sm text-blue-600 opacity-90">Affordable • Reliable • Safe Energy</p>
+  </div>
+</div>
+
+<header id="main-header" 
+  class="fixed top-0 right-0 w-1/4 md:w-1/2 z-50 shadow-lg rounded-bl-3xl transition-all duration-300"
+  style="background: linear-gradient(90deg, #00195d, #0092f5); color: white; padding: 12px 0;">
+
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-10 py-4 md:py-6">
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-6 md:gap-8 relative text-md font-semibold">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+
+      <!-- Services Dropdown -->
+      <div class="relative group">
+        <a href="services.html" id="services-link" class="flex items-center gap-1 py-2 text-white cursor-pointer select-none">
+          Services <i class="fa-solid fa-caret-down"></i>
+        </a>
+        <div id="services-dropdown" class="absolute right-0 mt-2 w-48 bg-white text-blue-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+          <a href="products.html" class="block px-4 py-2 hover:bg-blue-100">Products</a>
+          <a href="orders.html" class="block px-4 py-2 hover:bg-blue-100">Orders</a>
+        </div>
+      </div>
+
+      <a href="safety.html" class="nav-link">Safety</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+
+      <!-- More Dropdown -->
+      <div class="relative group">
+        <a href="#" id="more-link" class="flex items-center gap-1 py-2 text-white cursor-pointer select-none">
+          More <i class="fa-solid fa-caret-down"></i>
+        </a>
+        <div id="more-dropdown" class="absolute right-0 mt-2 w-40 bg-white text-blue-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+          <a href="#" class="block px-4 py-2 hover:bg-blue-100">Blog</a>
+          <a href="#" class="block px-4 py-2 hover:bg-blue-100">Portfolio</a>
+          <a href="#" class="block px-4 py-2 hover:bg-blue-100">FAQ</a>
+        </div>
+      </div>
+
+      <!-- Sign In + Cart -->
+      <div class="ml-14 flex items-center gap-4">
+        <button class="px-5 py-2 rounded-lg font-medium text-blue-800 transition bg-white shadow-md hover:bg-blue-500 hover:text-white">
+          Sign In
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Hamburger -->
+    <div class="md:hidden">
+      <button id="hamburger" class="text-white focus:outline-none">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-gradient-to-b from-[#00195d] to-[#0092f5] px-6 pb-6 space-y-2">
+    <a href="index.html" class="block py-2 text-white nav-link-mobile">Home</a>
+    <a href="about.html" class="block py-2 text-white nav-link-mobile">About</a>
+
+    <!-- Services Dropdown (Mobile) -->
+    <div class="relative">
+      <a href="#" id="mobile-services" class="flex items-center justify-between py-2 text-white cursor-pointer select-none">
+        Services <i class="fa-solid fa-caret-down"></i>
+      </a>
+      <div id="mobile-services-dropdown" class="hidden bg-white text-blue-800 rounded-lg shadow-lg mt-1">
+        <a href="services.html" class="block px-4 py-2 hover:bg-blue-100">Services</a>
+        <a href="products.html" class="block px-4 py-2 hover:bg-blue-100">Products</a>
+        <a href="orders.html" class="block px-4 py-2 hover:bg-blue-100">Orders</a>
+      </div>
+    </div>
+
+    <a href="safety.html" class="block py-2 text-white nav-link-mobile">Safety</a>
+    <a href="contact.html" class="block py-2 text-white nav-link-mobile">Contact</a>
+
+    <!-- More Dropdown (Mobile) -->
+    <div class="relative">
+      <a href="#" id="mobile-more" class="flex items-center justify-between py-2 text-white cursor-pointer select-none">
+        More <i class="fa-solid fa-caret-down"></i>
+      </a>
+      <div id="mobile-more-dropdown" class="hidden bg-white text-blue-800 rounded-lg shadow-lg mt-1">
+        <a href="#" class="block px-4 py-2 hover:bg-blue-100">Blog</a>
+        <a href="#" class="block px-4 py-2 hover:bg-blue-100">Portfolio</a>
+        <a href="#" class="block px-4 py-2 hover:bg-blue-100">FAQ</a>
+      </div>
+    </div>
+
+    <button class="w-full mt-2 px-5 py-2 rounded-lg font-medium text-blue-800 bg-white shadow-md hover:bg-blue-500 hover:text-white">
+      Sign In
+    </button>
+  </div>
+</header>
+
+  <main class="py-20 px-8 md:px-20 text-center bg-white">
+  
+<!-- CALL TO ACTION -->
+<section id="cta" class="py-20 mt-24 px-8 md:px-20 mt-6 rounded-3xl bg-gradient-to-br from-blue-900 to-blue-300 text-white text-center overflow-hidden" style="position:relative;">
+  <h2 class="text-4xl md:text-5xl font-bold mb-6 animate-bounce-in" style="animation-delay: 0.2s;">
+    Ready to Switch to Smarter Gas?
+  </h2>
+
+  <p class="text-lg mb-8 max-w-2xl mx-auto opacity-90 animate-bounce-in" style="animation-delay: 0.5s;">
+    Join hundreds of satisfied homes and schools already powered by BluePlanet Utilities.
+    Let’s make your energy safer, faster, and more affordable.
+  </p>
+
+  <div class="flex justify-center gap-6 flex-wrap animate-bounce-in" style="animation-delay: 0.8s;">
+    <a href="contact.html" 
+       class="px-8 py-3 rounded-lg font-semibold text-white transform transition hover:text-blue-900 animate-breathe"
+       style="background:#01b9f5; box-shadow:0 3px 8px rgba(0,0,0,0.3);">
+       Contact Us
+    </a>
+    <a href="services.html" 
+       class="px-8 py-3 rounded-lg font-semibold border border-white hover:bg-white hover:text-blue-900 transform transition hover:scale-105 animate-breathe"
+       style="">
+       Explore Services
+    </a>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+  <section id="about" class="section-about py-24 px-6 md:px-16">
+    <div class="about-grid max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+
+      <!-- Text content -->
+      <div class="about-text">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-blue-900" style="line-height:1.2;">
+          About Us
+        </h2>
+
+        <p class="text-lg md:text-base leading-relaxed text-blue-700 mb-4 opacity-0" data-text="BluePlanet Utilities is a trusted LPG supplier serving schools, institutions, homes, and businesses. We provide safe installations, modern gas monitoring solutions, and affordable energy for all communities. BluePlanet Utilities was born to solve the problem of inconsistent and unsafe LPG supply across South Africa."></p>
+      </div>
+
+      <!-- Image -->
+      <div class="about-image w-full h-96 rounded-xl shadow-xl overflow-hidden transform transition duration-700 hover:scale-105">
+        <img src="https://images.unsplash.com/photo-1539186607619-df476afe6ff1?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z2FzfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600" 
+             alt="LPG Gas" 
+             class="w-full h-full object-cover">
+      </div>
+
+    </div>
+  </section>
+
+<!-- MISSION & VISION -->
+<section id="mission" class="py-20 px-8 md:px-20 rounded-2xl bg-gradient-to-br from-blue-900 to-blue-300">
+  <h2 class="text-4xl text-white font-bold mb-12 text-center">Mission & Vision</h2>
+
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
+
+    <!-- Mission Card -->
+    <div class="p-8 bg-white rounded-2xl shadow-lg transform transition duration-700 opacity-0 translate-y-10" data-animate>
+      <h3 class="text-2xl font-semibold mb-4 text-blue-700">Our Mission</h3>
+      <p class="text-gray-700 text-lg leading-relaxed">
+        To deliver clean, reliable, and affordable LPG energy to every community — while maintaining the highest standards of safety, transparency, and environmental care.
+      </p>
+    </div>
+
+    <!-- Vision Card -->
+    <div class="p-8 bg-white rounded-2xl shadow-lg transform transition duration-700 opacity-0 translate-y-10" data-animate>
+      <h3 class="text-2xl font-semibold mb-4 text-blue-700">Our Vision</h3>
+      <p class="text-gray-700 text-lg leading-relaxed">
+        To become South Africa’s most trusted name in sustainable LPG energy solutions, using innovation like <em>smart gas monitoring, automated deliveries,</em> and ongoing safety education to empower families, schools, and businesses across the country.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<section id="values" class="py-20 px-8 md:px-20">
+  <h2 class="text-4xl font-bold mb-12 text-center" style="color:#002d72;">Our Core Values</h2>
+
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
+
+    <!-- Card 1 -->
+    <div class="p-6 bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl shadow-lg transform opacity-0" data-slide="left">
+      <h3 class="text-xl font-semibold mb-3 text-blue-900">Integrity</h3>
+      <p>We deliver what we promise — transparent pricing, honest communication, and responsible service.</p>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="p-6 bg-gradient-to-br from-blue-200 to-blue-300 rounded-2xl shadow-lg transform opacity-0" data-slide="right">
+      <h3 class="text-xl font-semibold mb-3 text-blue-900">Safety First</h3>
+      <p>Every cylinder, installation, and delivery is handled with professional safety checks and training.</p>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="p-6 bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl shadow-lg transform opacity-0" data-slide="left">
+      <h3 class="text-xl font-semibold mb-3 text-blue-900">Community</h3>
+      <p>We build lasting relationships with local schools, businesses, and households — not just customers.</p>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="p-6 bg-gradient-to-br from-blue-200 to-blue-300 rounded-2xl shadow-lg transform opacity-0" data-slide="right">
+      <h3 class="text-xl font-semibold mb-3 text-blue-900">Innovation</h3>
+      <p>We adopt smart gas monitoring systems and digital tools to modernize the energy experience.</p>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="p-6 bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl shadow-lg transform opacity-0" data-slide="left">
+      <h3 class="text-xl font-semibold mb-3 text-blue-900">Reliability</h3>
+      <p>Your gas arrives on time, every time — because we understand consistency powers your life.</p>
+    </div>
+
+<!-- Card 6 -->
+    <div class="p-6 bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl shadow-lg transform opacity-0" data-slide="right">
+      <h3 class="text-xl font-semibold mb-3 text-blue-900">Peace</h3>
+      <p>When you got us you get peace of mind, knowing you are going to cook today.</p>
+    </div>
+  </div>
+</section>
+<!-- TEAM SECTION -->
+<section id="team" class="py-20 rounded-3xl px-8 md:px-20" style="background: linear-gradient(135deg, #f0f8ff, #ffffff);">
+  <h2 class="text-4xl font-bold mb-12 text-center" style="color:#00195d;">Meet Our Team</h2>
+
+  <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 text-center">
+
+    <!-- Team Member 1 -->
+    <div class="p-6 bg-white rounded-2xl shadow-xl transform transition duration-500 hover:scale-105 hover:shadow-2xl">
+      <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Team Member" class="w-32 h-32 mx-auto rounded-full mb-4 border-4 border-blue-100">
+      <h3 class="text-xl font-semibold mb-1">A. K. Bele</h3>
+      <p class="text-blue-700 font-medium mb-3">Founder & CEO</p>
+      <p class="text-gray-600 text-sm leading-relaxed">
+        Leads strategy, partnerships, and the company’s vision for accessible, safe LPG across South Africa.
+      </p>
+    </div>
+
+    <!-- Team Member 2 -->
+    <div class="p-6 bg-white rounded-2xl shadow-xl transform transition duration-500 hover:scale-105 hover:shadow-2xl">
+      <img src="https://randomuser.me/api/portraits/women/55.jpg" alt="Team Member" class="w-32 h-32 mx-auto rounded-full mb-4 border-4 border-blue-100">
+      <h3 class="text-xl font-semibold mb-1">K. Bele</h3>
+      <p class="text-blue-700 font-medium mb-3">Founder & Operations Manager</p>
+      <p class="text-gray-600 text-sm leading-relaxed">
+        Ensures efficient delivery scheduling, safety compliance, and customer satisfaction daily.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+  <!-- HERO / IMAGE SECTION -->
+  <section 
+    class="w-full flex flex-col mt-10 rounded-2xl md:flex-row items-center justify-center pt-44 pb-20 text-white bg-gradient-to-br from-blue-900 to-blue-300"
+    style="min-height: 80vh;">
+    
+    <div class="text-center md:text-left max-w-xl px-10">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Your Trusted LPG Partner</h1>
+      <p class="text-lg mb-6">
+        Delivering affordable, reliable, and safe gas solutions for homes, schools, and businesses.
+      </p>
+      <a href="#contact" 
+         class="inline-block px-6 py-3 rounded-lg font-semibold text-white hover:opacity-90"
+         style="background:#01b9f5; box-shadow:0 3px 6px rgba(0,0,0,0.3);">
+         Get Started
+      </a>
+    </div>
+
+    <!-- IMAGE PLACEHOLDER AREA -->
+    <div>
+      <p class="text-white text-lg font-medium opacity-80"><img src="https://plus.unsplash.com/premium_photo-1661964136447-676beb97b303?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Z2FzfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600" 
+             alt="LPG Gas" 
+             class="w-full h-full object-cover w-80 h-80 rounded-2xl shadow-xl flex items-center justify-center bg-white/10 border border-white/20"></p>
+    </div>
+  </section>
+
+  </main>
+
+<footer class="text-white mt-16"
+         style="
+         background: linear-gradient(90deg, #00195d, #0092f5);">
+  <div class="max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-4 gap-8">
+
+    <!-- About / Brand -->
+    <div class="space-y-2">
+      <h2 class="text-xl font-semibold">BluePlanet Utilities</h2>
+      <p class="text-sm opacity-90">
+        Affordable • Reliable • Safe Energy
+      </p>
+      <p class="text-sm opacity-90">Designed and maintained by BluePlanet Utilities</p>
+    </div>
+
+    <!-- Contact Info -->
+    <div>
+      <h3 class="text-lg font-semibold">Contact</h3>
+      <p class="text-sm">Email: <a href="mailto:support@blueplanet.co.za" class="hover:underline">support@blueplanet.co.za</a></p>
+      <p class="text-sm">Phone: <a href="tel:+27621028828" class="hover:underline">+27 62 102 8828</a></p>
+      <p class="text-sm">Address: 123 BluePlanet Street, Pretoria, South Africa</p>
+      <p class="text-sm">Hours: Mon-Fri 08:00-17:00</p>
+    </div>
+
+    <!-- Social Media -->
+    <div>
+      <h3 class="text-lg font-semibold mb-2">Follow Us</h3>
+      <div class="flex gap-4 text-white">
+        <a href="#" class="hover:text-blue-300" aria-label="LinkedIn"><i class="fa-brands fa-linkedin fa-lg"></i></a>
+        <a href="#" class="hover:text-blue-300" aria-label="Twitter"><i class="fa-brands fa-twitter fa-lg"></i></a>
+        <a href="#" class="hover:text-blue-300" aria-label="Facebook"><i class="fa-brands fa-facebook fa-lg"></i></a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="text-center text-sm pb-4">
+    <p class="opacity-80">© 2025 BluePlanet. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ---------------------------
+     TYPING EFFECT FUNCTION
+  ---------------------------- */
+  function typeText(element, text, delay = 30) {
+    if (!text) return;
+    let index = 0;
+    element.textContent = '';
+    element.style.opacity = 1;
+    const interval = setInterval(() => {
+      element.textContent += text[index];
+      index++;
+      if (index >= text.length) clearInterval(interval);
+    }, delay);
+  }
+
+  /* ---------------------------
+     ABOUT SECTION TYPING
+  ---------------------------- */
+  const aboutParagraphs = document.querySelectorAll('#about p[data-text]');
+  const aboutSection = document.querySelector('#about');
+
+  if (aboutSection && aboutParagraphs.length) {
+    const aboutObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          aboutParagraphs.forEach((p, i) => {
+            setTimeout(() => {
+              typeText(p, p.getAttribute('data-text'));
+            }, i * 400);
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    aboutObserver.observe(aboutSection);
+  }
+
+  /* ---------------------------
+     MISSION & VISION ANIMATION
+  ---------------------------- */
+  const missionCards = document.querySelectorAll('[data-animate]');
+  const missionObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = 'translateY(0)';
+        entry.target.style.transition = 'all 0.8s ease-out';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  missionCards.forEach(card => missionObserver.observe(card));
+
+  /* ---------------------------
+     CORE VALUES SLIDE-IN
+  ---------------------------- */
+  const valueCards = document.querySelectorAll('[data-slide]');
+  const slideObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.style.transition = 'all 0.8s ease-out';
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = 'translateX(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  valueCards.forEach(card => {
+    card.style.opacity = 0;
+    if(card.getAttribute('data-slide') === 'left'){
+      card.style.transform = 'translateX(-100px)';
+    } else {
+      card.style.transform = 'translateX(100px)';
+    }
+    slideObserver.observe(card);
+  });
+
+});
+</script>
+</body>
+</html>

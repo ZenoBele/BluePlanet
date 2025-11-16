@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manager Settings - BluePlanet Utilities</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    .sidebar-bg {
+      background: linear-gradient(180deg, #0ea5e9, #3b82f6, #60a5fa);
+    }
+    .section-header {
+      background: linear-gradient(90deg, #0ea5e9, #3b82f6);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+  </style>
+</head>
+<body class="flex h-screen bg-gray-100 font-sans">
+
+  <!-- Sidebar -->
+  <aside class="w-64 sidebar-bg text-white flex flex-col">
+    <div class="p-6 flex flex-col items-center gap-2">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/LPG_gas_cylinder_icon.png" 
+           alt="Logo" class="w-16 h-16 rounded-full shadow-md bg-white p-1">
+      <h1 class="text-xl font-bold">BluePlanet</h1>
+      <span class="text-sm opacity-80">Manager Panel</span>
+    </div>
+    <nav class="mt-8 flex-1">
+      <a href="admin.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+      <a href="customerManage.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-users"></i> Customers</a>
+      <a href="serviceManage.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-gear"></i> Services</a>
+      <a href="contracts.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-file-contract"></i> Contracts</a>
+      <a href="manageOrders.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-box"></i> Orders</a>
+      <a href="reports.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-chart-line"></i> Reports</a>
+      <a href="settings.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-user-gear"></i> Settings</a>
+    </nav>
+    <div class="p-6">
+      <button class="w-full px-4 py-2 rounded-lg font-bold text-blue-600 bg-white hover:brightness-110">Logout</button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="flex-1 flex flex-col overflow-y-auto">
+    <!-- Topbar -->
+    <header class="flex justify-between items-center px-6 py-4 shadow-md bg-white sticky top-0 z-10">
+      <h2 class="text-2xl font-semibold text-gray-700">Settings</h2>
+      <div class="flex items-center gap-4">
+        <button class="relative text-gray-600 hover:text-gray-800">
+          <i class="fa-solid fa-bell"></i>
+          <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+        </button>
+      </div>
+    </header>
+
+    <main class="p-6 space-y-8">
+      <!-- Profile Settings -->
+      <section class="bg-white p-6 rounded-xl shadow-md space-y-4">
+        <h3 class="text-2xl font-bold section-header">Profile Settings</h3>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-gray-700 font-medium mb-1">Full Name</label>
+            <input type="text" class="w-full p-3 border rounded-lg" placeholder="Manager Name">
+          </div>
+          <div>
+            <label class="block text-gray-700 font-medium mb-1">Email Address</label>
+            <input type="email" class="w-full p-3 border rounded-lg" placeholder="manager@blueplanet.com">
+          </div>
+        </div>
+        <button class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">Update Profile</button>
+      </section>
+
+      <!-- Password Settings -->
+      <section class="bg-white p-6 rounded-xl shadow-md space-y-4">
+        <h3 class="text-2xl font-bold section-header">Password Settings</h3>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-gray-700 font-medium mb-1">Current Password</label>
+            <input type="password" class="w-full p-3 border rounded-lg" placeholder="********">
+          </div>
+          <div>
+            <label class="block text-gray-700 font-medium mb-1">New Password</label>
+            <input type="password" class="w-full p-3 border rounded-lg" placeholder="********">
+          </div>
+        </div>
+        <button class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">Change Password</button>
+      </section>
+
+      <!-- Notification Settings -->
+      <section class="bg-white p-6 rounded-xl shadow-md space-y-4">
+        <h3 class="text-2xl font-bold section-header">Notification Settings</h3>
+        <div class="flex flex-col gap-4">
+          <label class="flex items-center gap-3">
+            <input type="checkbox" class="form-checkbox w-5 h-5 text-blue-500">
+            Receive email notifications
+          </label>
+          <label class="flex items-center gap-3">
+            <input type="checkbox" class="form-checkbox w-5 h-5 text-blue-500">
+            Receive SMS notifications
+          </label>
+          <label class="flex items-center gap-3">
+            <input type="checkbox" class="form-checkbox w-5 h-5 text-blue-500">
+            Receive push notifications
+          </label>
+        </div>
+      </section>
+
+      <!-- System Preferences -->
+      <section class="bg-white p-6 rounded-xl shadow-md space-y-4">
+        <h3 class="text-2xl font-bold section-header">System Preferences</h3>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-gray-700 font-medium mb-1">Default Language</label>
+            <select class="w-full p-3 border rounded-lg">
+              <option>English</option>
+              <option>Zulu</option>
+              <option>Xhosa</option>
+              <option>Venda</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-gray-700 font-medium mb-1">Time Zone</label>
+            <select class="w-full p-3 border rounded-lg">
+              <option>GMT+2 (South Africa)</option>
+              <option>GMT+1</option>
+              <option>GMT+0</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <div class="text-center mt-4">
+        <button class="px-8 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">Save All Changes</button>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

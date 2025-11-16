@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Management - BluePlanet Utilities</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    .sidebar-bg {
+      background: linear-gradient(180deg, #0ea5e9, #3b82f6, #60a5fa);
+    }
+    .btn-gradient {
+      background: linear-gradient(90deg,#3b82f6,#0ea5e9);
+    }
+  </style>
+</head>
+<body class="flex h-screen bg-gray-100 font-sans">
+
+  <!-- Sidebar -->
+  <aside class="w-64 sidebar-bg text-white flex flex-col">
+    <div class="p-6 flex flex-col items-center gap-2">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/LPG_gas_cylinder_icon.png" 
+           alt="Logo" class="w-16 h-16 rounded-full shadow-md bg-white p-1">
+      <h1 class="text-xl font-bold">BluePlanet</h1>
+      <span class="text-sm opacity-80">Manager Panel</span>
+    </div>
+    <nav class="mt-8 flex-1">
+      <a href="admin.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+      <a href="customerManage.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-users"></i> Customers</a>
+      <a href="serviceManage.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-gear"></i> Services</a>
+      <a href="contracts.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-file-contract"></i> Contracts</a>
+      <a href="manageOrders.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-box"></i> Orders</a>
+	  <a href="sales.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-box"></i> Sales</a>
+      <a href="reports.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-chart-line"></i> Reports</a>
+      <a href="settings.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-user-gear"></i> Settings</a>
+    </nav>
+    <div class="p-6">
+      <button class="w-full px-4 py-2 rounded-lg font-bold text-blue-600 bg-white hover:brightness-110">Logout</button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="flex-1 flex flex-col overflow-y-auto">
+    <!-- Topbar -->
+    <header class="flex justify-between items-center px-6 py-4 shadow-md bg-white sticky top-0 z-10">
+      <h2 class="text-2xl font-semibold text-gray-700">Technician / Staff Management</h2>
+      <div class="flex items-center gap-4">
+        <input type="text" placeholder="Search Staff..." class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
+        <button class="btn-gradient px-4 py-2 rounded-lg text-white font-medium flex items-center gap-2"><i class="fa-solid fa-plus"></i> Add Staff</button>
+      </div>
+    </header>
+
+    <!-- Staff Table -->
+    <main class="p-6">
+      <div class="overflow-x-auto bg-white rounded-xl shadow-md">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-blue-500 text-white">
+            <tr>
+              <th class="px-6 py-3 text-left text-sm font-medium">Name</th>
+              <th class="px-6 py-3 text-left text-sm font-medium">Role</th>
+              <th class="px-6 py-3 text-left text-sm font-medium">Assigned Orders</th>
+              <th class="px-6 py-3 text-left text-sm font-medium">Status</th>
+              <th class="px-6 py-3 text-left text-sm font-medium">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <tr class="hover:bg-gray-50">
+              <td class="px-6 py-4">John Doe</td>
+              <td class="px-6 py-4">Technician</td>
+              <td class="px-6 py-4">12</td>
+              <td class="px-6 py-4 text-green-600 font-semibold">Active</td>
+              <td class="px-6 py-4 flex gap-2">
+                <button class="btn-gradient px-3 py-1 rounded-lg text-white text-sm flex items-center gap-1"><i class="fa-solid fa-edit"></i> Edit</button>
+                <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-sm flex items-center gap-1"><i class="fa-solid fa-trash"></i> Delete</button>
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-50">
+              <td class="px-6 py-4">Jane Smith</td>
+              <td class="px-6 py-4">Technician</td>
+              <td class="px-6 py-4">8</td>
+              <td class="px-6 py-4 text-green-600 font-semibold">Active</td>
+              <td class="px-6 py-4 flex gap-2">
+                <button class="btn-gradient px-3 py-1 rounded-lg text-white text-sm flex items-center gap-1"><i class="fa-solid fa-edit"></i> Edit</button>
+                <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-sm flex items-center gap-1"><i class="fa-solid fa-trash"></i> Delete</button>
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-50">
+              <td class="px-6 py-4">Mark Lee</td>
+              <td class="px-6 py-4">Staff</td>
+              <td class="px-6 py-4">0</td>
+              <td class="px-6 py-4 text-yellow-500 font-semibold">Inactive</td>
+              <td class="px-6 py-4 flex gap-2">
+                <button class="btn-gradient px-3 py-1 rounded-lg text-white text-sm flex items-center gap-1"><i class="fa-solid fa-edit"></i> Edit</button>
+                <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-sm flex items-center gap-1"><i class="fa-solid fa-trash"></i> Delete</button>
+              </td>
+            </tr>
+            <!-- Add more rows dynamically from DB -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

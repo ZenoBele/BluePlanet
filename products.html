@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Products | BluePlanet Utilities</title>
+  <script src="js/script.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: #131217;
+    }
+	
+	/* Center spreading underline on hover */
+.nav-link, .nav-link-mobile {
+  position: relative;
+  transition: color 0.3s ease;
+}
+.nav-link::after, .nav-link-mobile::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 50%;
+  background-color: #01b9f5;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+.nav-link:hover::after, .nav-link-mobile:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* Toast Feedback */
+.toast {
+  position: fixed;
+  top: 20%;
+  right: 1%;
+  background: #00a2ff;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 10px;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.4s ease;
+  z-index: 9999;
+  font-weight: 500;
+}
+
+/* Floating +1 animation */
+@keyframes floatUp {
+  0% {opacity: 1; transform: translateY(0);}
+  100% {opacity: 0; transform: translateY(-40px);}
+}
+.float-bubble {
+  position: absolute;
+  right: 20px;
+  bottom: 60px;
+  font-weight: bold;
+  color: #00a2ff;
+  animation: floatUp 1s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease forwards;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up {
+  animation: slideUp 0.8s ease forwards;
+}
+.animate-slide-up.delay-100 { animation-delay: 0.1s; }
+.animate-slide-up.delay-200 { animation-delay: 0.2s; }
+.animate-slide-up.delay-300 { animation-delay: 0.3s; }
+.animate-slide-up.delay-400 { animation-delay: 0.4s; }
+.animate-slide-up.delay-500 { animation-delay: 0.5s; }
+.animate-slide-up.delay-600 { animation-delay: 0.6s; }
+.animate-slide-up.delay-700 { animation-delay: 0.7s; }
+.animate-slide-up.delay-800 { animation-delay: 0.8s; }
+.animate-slide-up.delay-900 { animation-delay: 0.9s; }
+.add-btn:hover {
+  animation: bounce 0.6s;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+  </style>
+</head>
+<body class="overflow-x-hidden">
+
+<!-- Logo (top-left, not fixed) -->
+<div class="flex items-center gap-4 bg-white mt-6 ml-10 md:ml-32 p-3 pr-6 w-fit">
+  <img 
+    src="https://media.istockphoto.com/id/162542504/photo/earth-sunrise-in-space.webp?a=1&b=1&s=612x612&w=0&k=20&c=ExRs1QVRkYOcXXEcr7nKzXlT2LCe63pV9bIGH5fSkMs=" 
+    alt="BluePlanet Utilities Logo" 
+    class="w-16 h-16 rounded-full shadow-md">
+  <div>
+    <h1 class="text-2xl md:text-3xl font-semibold text-blue-900">BluePlanet</h1>
+    <p class="text-sm text-blue-600 opacity-90">Affordable • Reliable • Safe Energy</p>
+  </div>
+</div>
+
+<header id="main-header" 
+  class="fixed top-0 right-0 w-1/4 md:w-1/2 z-50 shadow-lg rounded-bl-3xl transition-all duration-300"
+  style="background: linear-gradient(90deg, #00195d, #0092f5); color: white; padding: 12px 0;">
+
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-10 py-4 md:py-6">
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-6 md:gap-8 relative text-md font-semibold">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+
+      <!-- Services Dropdown -->
+      <div class="relative group">
+        <a href="services.html" id="services-link" class="flex items-center gap-1 py-2 text-white cursor-pointer select-none">
+          Services <i class="fa-solid fa-caret-down"></i>
+        </a>
+        <div id="services-dropdown" class="absolute right-0 mt-2 w-48 bg-white text-blue-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+          <a href="products.html" class="block px-4 py-2 hover:bg-blue-100">Products</a>
+          <a href="orders.html" class="block px-4 py-2 hover:bg-blue-100">Orders</a>
+        </div>
+      </div>
+
+      <a href="safety.html" class="nav-link">Safety</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+
+      <!-- More Dropdown -->
+      <div class="relative group">
+        <a href="#" id="more-link" class="flex items-center gap-1 py-2 text-white cursor-pointer select-none">
+          More <i class="fa-solid fa-caret-down"></i>
+        </a>
+        <div id="more-dropdown" class="absolute right-0 mt-2 w-40 bg-white text-blue-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+          <a href="#" class="block px-4 py-2 hover:bg-blue-100">Blog</a>
+          <a href="#" class="block px-4 py-2 hover:bg-blue-100">Portfolio</a>
+          <a href="#" class="block px-4 py-2 hover:bg-blue-100">FAQ</a>
+        </div>
+      </div>
+
+      <!-- Sign In + Cart -->
+      <div class="ml-8 flex items-center gap-4">
+        <button class="px-5 py-2 rounded-lg font-medium text-blue-800 transition bg-white shadow-md hover:bg-blue-500 hover:text-white">
+          Sign In
+        </button>
+		<a href="orders.html" class="relative text-white text-2xl hover:text-blue-200" id="cart-icon">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span id="cart-count" class="absolute -top-2 -right-3 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full hidden"></span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Mobile Hamburger -->
+    <div class="md:hidden">
+      <button id="hamburger" class="text-white focus:outline-none">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-gradient-to-b from-[#00195d] to-[#0092f5] px-6 pb-6 space-y-2">
+    <a href="index.html" class="block py-2 text-white nav-link-mobile">Home</a>
+    <a href="about.html" class="block py-2 text-white nav-link-mobile">About</a>
+
+    <!-- Services Dropdown (Mobile) -->
+    <div class="relative">
+      <a href="#" id="mobile-services" class="flex items-center justify-between py-2 text-white cursor-pointer select-none">
+        Services <i class="fa-solid fa-caret-down"></i>
+      </a>
+      <div id="mobile-services-dropdown" class="hidden bg-white text-blue-800 rounded-lg shadow-lg mt-1">
+        <a href="services.html" class="block px-4 py-2 hover:bg-blue-100">Services</a>
+        <a href="products.html" class="block px-4 py-2 hover:bg-blue-100">Products</a>
+        <a href="orders.html" class="block px-4 py-2 hover:bg-blue-100">Orders</a>
+      </div>
+    </div>
+
+    <a href="safety.html" class="block py-2 text-white nav-link-mobile">Safety</a>
+    <a href="contact.html" class="block py-2 text-white nav-link-mobile">Contact</a>
+
+    <!-- More Dropdown (Mobile) -->
+    <div class="relative">
+      <a href="#" id="mobile-more" class="flex items-center justify-between py-2 text-white cursor-pointer select-none">
+        More <i class="fa-solid fa-caret-down"></i>
+      </a>
+      <div id="mobile-more-dropdown" class="hidden bg-white text-blue-800 rounded-lg shadow-lg mt-1">
+        <a href="#" class="block px-4 py-2 hover:bg-blue-100">Blog</a>
+        <a href="#" class="block px-4 py-2 hover:bg-blue-100">Portfolio</a>
+        <a href="#" class="block px-4 py-2 hover:bg-blue-100">FAQ</a>
+      </div>
+    </div>
+
+    <button class="w-full mt-2 px-5 py-2 rounded-lg font-medium text-blue-800 bg-white shadow-md hover:bg-blue-500 hover:text-white">
+      Sign In
+    </button>
+	
+    <a href="orders.html" class="flex items-center gap-2 py-2 text-white">
+      <i class="fa-solid fa-cart-shopping text-xl"></i>
+      <span id="cart-count-mobile" class="ml-auto bg-red-500 text-white text-xs px-2 py-0.5 rounded-full hidden"></span>
+    </a>
+  </div>
+</header>
+
+<main class="px-6 md:px-20 py-16 space-y-16" style="background: linear-gradient(to bottom right, white, #e0f7ff);">
+
+  <!-- Page Header -->
+  <section class="text-center opacity-0 translate-y-8 transition duration-700 ease-out animate-fade-in-up">
+    <h1 class="text-4xl font-bold mb-3" style="color:#0057b7;">Our LPG Products</h1>
+    <p class="text-gray-700">Safe, certified, and affordable LPG for homes and businesses.</p>
+  </section>
+
+  <!-- Products -->
+  <section id="product-list" class="grid md:grid-cols-3 gap-10">
+
+    <!-- 3kg Cylinder -->
+    <div class="border rounded-2xl p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 bg-white animate-slide-up">
+      <img src="https://media.istockphoto.com/id/929697906/photo/blue-lpg-cooking-gas-tank-or-propane-tank-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=kfnxFg3G7SD3ccdibk3bimaHsXrgVCLTtirpelVLDcI=" alt="3kg Cylinder" class="w-full h-48 object-cover rounded-xl mb-4">
+      <h2 class="text-xl font-semibold" style="color:#004aad;">3kg LPG Cylinder</h2>
+      <p class="text-sm text-gray-600 mt-1">Compact and ideal for camping or small gas stoves.</p>
+      <p class="text-lg font-bold mt-3" style="color:#333;">R180</p>
+      <button onclick="addToCart('3kg LPG Cylinder', 180)"
+        class="add-btn mt-4 text-white px-4 py-2 rounded-lg hover:scale-105 transition w-full"
+        style="background: linear-gradient(to right, #0078ff, #00c3ff);">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- 5kg Cylinder -->
+<div class="border rounded-2xl p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 bg-white animate-slide-up delay-1000">
+  <img src="https://media.istockphoto.com/id/1288686248/photo/blue-metal-water-tank-for-50-liters-of-water.jpg?s=612x612&w=0&k=20&c=gVuqAxtotkfXzrP_yAC0KB3aIkX8pcBfhxuivqiNyCQ=" alt="5kg Cylinder" class="w-full h-48 object-cover rounded-xl mb-4">
+  <h2 class="text-xl font-semibold" style="color:#004aad;">5kg LPG Cylinder</h2>
+  <p class="text-sm text-gray-600 mt-1">Compact cylinder, perfect for small households or portable stoves.</p>
+  <p class="text-lg font-bold mt-3" style="color:#333;">R250</p>
+  <button onclick="addToCart('5kg LPG Cylinder', 250)"
+    class="add-btn mt-4 text-white px-4 py-2 rounded-lg hover:scale-105 transition w-full"
+    style="background: linear-gradient(to right, #0078ff, #00c3ff);">
+    Add to Cart
+  </button>
+</div>
+
+ <!-- 7kg Cylinder -->
+<div class="border rounded-2xl p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 bg-white animate-slide-up delay-1100">
+  <img src="https://media.istockphoto.com/id/868523700/photo/blue-lpg-tank-under-sun-light.jpg?s=612x612&w=0&k=20&c=LAp6NgTcqC6Bqddn2L2j1mNLuaH8nfcW7RcJfk0sRuA=" alt="7kg Cylinder" class="w-full h-48 object-cover rounded-xl mb-4">
+  <h2 class="text-xl font-semibold" style="color:#004aad;">7kg LPG Cylinder</h2>
+  <p class="text-sm text-gray-600 mt-1">Slightly larger cylinder for small kitchens or outdoor use.</p>
+  <p class="text-lg font-bold mt-3" style="color:#333;">R280</p>
+  <button onclick="addToCart('7kg LPG Cylinder', 280)"
+    class="add-btn mt-4 text-white px-4 py-2 rounded-lg hover:scale-105 transition w-full"
+    style="background: linear-gradient(to right, #0078ff, #00c3ff);">
+    Add to Cart
+  </button>
+</div>
+
+<!-- 9kg Cylinder -->
+    <div class="border rounded-2xl p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 bg-white animate-slide-up delay-100">
+      <img src="https://media.istockphoto.com/id/2196362161/photo/orange-gas-cylinders-suitable-for-home-use.jpg?s=612x612&w=0&k=20&c=iO72jqH_Hm-Hku1b8SQxpjxfn1qU67IkujYQ-v3sj6U=" alt="9kg Cylinder" class="w-full h-48 object-cover rounded-xl mb-4">
+      <h2 class="text-xl font-semibold" style="color:#004aad;">9kg LPG Cylinder</h2>
+      <p class="text-sm text-gray-600 mt-1">Perfect for households and small kitchens. SABS certified.</p>
+      <p class="text-lg font-bold mt-3" style="color:#333;">R320</p>
+      <button onclick="addToCart('9kg LPG Cylinder', 320)"
+        class="add-btn mt-4 text-white px-4 py-2 rounded-lg hover:scale-105 transition w-full"
+        style="background: linear-gradient(to right, #0078ff, #00c3ff);">
+        Add to Cart
+      </button>
+    </div>
+
+ <!-- 15kg Cylinder -->
+<div class="border rounded-2xl p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 bg-white animate-slide-up delay-1200">
+  <img src="https://media.istockphoto.com/id/2150355663/video/liquefied-petroleum-gas-cylinder-refilling-safety-nobs-with-safety-markings-at-day.avif?s=640x640&k=20&c=jjB_VmDe4gIFx8gUM--5e60xUxHRMe5VSlf7cEOYkHk=" alt="15kg Cylinder" class="w-full h-48 object-cover rounded-xl mb-4">
+  <h2 class="text-xl font-semibold" style="color:#004aad;">15kg LPG Cylinder</h2>
+  <p class="text-sm text-gray-600 mt-1">Medium cylinder for homes, small restaurants, or workshops.</p>
+  <p class="text-lg font-bold mt-3" style="color:#333;">R850</p>
+  <button onclick="addToCart('15kg LPG Cylinder', 850)"
+    class="add-btn mt-4 text-white px-4 py-2 rounded-lg hover:scale-105 transition w-full"
+    style="background: linear-gradient(to right, #0078ff, #00c3ff);">
+    Add to Cart
+  </button>
+</div>
+
+    <!-- 19kg Cylinder -->
+    <div class="border rounded-2xl p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 bg-white animate-slide-up delay-200">
+      <img src="https://media.istockphoto.com/id/2127066715/video/lpg-gas-bottles-3d-video-animation.avif?s=640x640&k=20&c=BUid6IMRDEOfboG5wb0yvAEQ7NNbPu8hrVnX1bu_DoQ=" alt="19kg Cylinder" class="w-full h-48 object-cover rounded-xl mb-4">
+      <h2 class="text-xl font-semibold" style="color:#004aad;">19kg LPG Cylinder</h2>
+      <p class="text-sm text-gray-600 mt-1">For medium households and small businesses. Durable and safe.</p>
+      <p class="text-lg font-bold mt-3" style="color:#333;">R650</p>
+      <button onclick="addToCart('19kg LPG Cylinder', 650)"
+        class="add-btn mt-4 text-white px-4 py-2 rounded-lg hover:scale-105 transition w-full"
+        style="background: linear-gradient(to right, #0078ff, #00c3ff);">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- 48kg Cylinder -->
+    <div class="border rounded-2xl p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 bg-white animate-slide-up delay-300">
+      <img src="https://media.istockphoto.com/id/506557810/photo/lpg-gas-bottles-lpg-plant.jpg?s=612x612&w=0&k=20&c=AamrtxVcuUHNGorlMy90jnoQKYESdOLZ05t13WrS59U=" alt="48kg Cylinder" class="w-full h-48 object-cover rounded-xl mb-4">
+      <h2 class="text-xl font-semibold" style="color:#004aad;">48kg LPG Cylinder</h2>
+      <p class="text-sm text-gray-600 mt-1">For schools, restaurants, and large institutions. Exchange available.</p>
+      <p class="text-lg font-bold mt-3" style="color:#333;">R1,350</p>
+      <button onclick="addToCart('48kg LPG Cylinder', 1350)"
+        class="add-btn mt-4 text-white px-4 py-2 rounded-lg hover:scale-105 transition w-full"
+        style="background: linear-gradient(to right, #0078ff, #00c3ff);">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- LPG Regulator -->
+    <div class="border rounded-2xl p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 bg-white animate-slide-up delay-400">
+      <img src="https://media.istockphoto.com/id/1325421326/video/screws-the-reducer-to-the-gas-cylinder.avif?s=640x640&k=20&c=KQIA_vVzKfsLC_cEICDyw2-BR_oHB2owKgj04St0ZQk=" alt="LPG Regulator" class="w-full h-48 object-cover rounded-xl mb-4">
+      <h2 class="text-xl font-semibold" style="color:#004aad;">LPG Regulator</h2>
+      <p class="text-sm text-gray-600 mt-1">High-quality pressure regulator for all standard LPG cylinders.</p>
+      <p class="text-lg font-bold mt-3" style="color:#333;">R180</p>
+      <button onclick="addToCart('LPG Regulator', 180)"
+        class="add-btn mt-4 text-white px-4 py-2 rounded-lg hover:scale-105 transition w-full"
+        style="background: linear-gradient(to right, #0078ff, #00c3ff);">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- Gas Stove -->
+    <div class="border rounded-2xl p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 bg-white animate-slide-up delay-500">
+      <img src="https://media.istockphoto.com/id/1864135735/photo/range-burner-of-a-natural-gas-home-stove.jpg?s=612x612&w=0&k=20&c=dyfjb7IH80hbEP_2hgZNpmnHPzXwZkwwmdvARyLEQ1A=" alt="Gas Stove" class="w-full h-48 object-cover rounded-xl mb-4">
+      <h2 class="text-xl font-semibold" style="color:#004aad;">Gas Stove</h2>
+      <p class="text-sm text-gray-600 mt-1">Durable and energy-efficient LPG stove for home or outdoor use.</p>
+      <p class="text-lg font-bold mt-3" style="color:#333;">R550</p>
+      <button onclick="addToCart('Gas Stove', 550)"
+        class="add-btn mt-4 text-white px-4 py-2 rounded-lg hover:scale-105 transition w-full"
+        style="background: linear-gradient(to right, #0078ff, #00c3ff);">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- Gas Pipe -->
+    <div class="border rounded-2xl p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 bg-white animate-slide-up delay-600">
+      <img src="https://media.istockphoto.com/id/1473598230/photo/image-of-rubber-hose-coiled-on-the-ground.jpg?s=612x612&w=0&k=20&c=6-Sbx9WcTLVSss1yOUdRc7ZuSU-qEcTWUczPXMci5r4=" alt="Gas Pipe" class="w-full h-48 object-cover rounded-xl mb-4">
+      <h2 class="text-xl font-semibold" style="color:#004aad;">LPG Gas Pipe</h2>
+      <p class="text-sm text-gray-600 mt-1">Flexible, high-quality pipe for safe gas flow and connections.</p>
+      <p class="text-lg font-bold mt-3" style="color:#333;">R90/m</p>
+      <button onclick="addToCart('LPG Gas Pipe', 90)"
+        class="add-btn mt-4 text-white px-4 py-2 rounded-lg hover:scale-105 transition w-full"
+        style="background: linear-gradient(to right, #0078ff, #00c3ff);">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- Cylinder Cage -->
+    <div class="border rounded-2xl p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 bg-white animate-slide-up delay-700">
+      <img src="https://media.istockphoto.com/id/1582339469/photo/locked-red-gas-tank.jpg?s=612x612&w=0&k=20&c=WAGQdeCw1YJyx5kBCVFYqL84Wj_uz7yhp1psZJXPWpE=" alt="Cylinder Cage" class="w-full h-48 object-cover rounded-xl mb-4">
+      <h2 class="text-xl font-semibold" style="color:#004aad;">Cylinder Cage</h2>
+      <p class="text-sm text-gray-600 mt-1">Heavy-duty steel cage for safe outdoor storage of gas cylinders.</p>
+      <p class="text-lg font-bold mt-3" style="color:#333;">R950</p>
+      <button onclick="addToCart('Cylinder Cage', 950)"
+        class="add-btn mt-4 text-white px-4 py-2 rounded-lg hover:scale-105 transition w-full"
+        style="background: linear-gradient(to right, #0078ff, #00c3ff);">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- Safety Sticker -->
+    <div class="border rounded-2xl p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 bg-white animate-slide-up delay-800">
+      <img src="https://media.istockphoto.com/id/1327235143/vector/flammable-liquids-danger-sign.jpg?s=612x612&w=0&k=20&c=5afAAYCoIZXM5Cgrjxw3dovL8CQykzL3rAwcFIhvI00=" alt="Safety Sticker" class="w-full h-48 object-cover rounded-xl mb-4">
+      <h2 class="text-xl font-semibold" style="color:#004aad;">Safety Sticker</h2>
+      <p class="text-sm text-gray-600 mt-1">Remind users of LPG safety tips and emergency procedures.</p>
+      <p class="text-lg font-bold mt-3" style="color:#333;">R25</p>
+      <button onclick="addToCart('Safety Sticker', 25)"
+        class="add-btn mt-4 text-white px-4 py-2 rounded-lg hover:scale-105 transition w-full"
+        style="background: linear-gradient(to right, #0078ff, #00c3ff);">
+        Add to Cart
+      </button>
+    </div>
+	
+	<!-- Gas Heater -->
+<div class="border rounded-2xl p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 bg-white animate-slide-up delay-1300">
+  <img src="https://media.istockphoto.com/id/2166699820/video/modern-ceramic-gas-heater-camera-zooms-in-smoothly.avif?s=640x640&k=20&c=VEKDOSBWuH8m-VJqH86fyGmMaWvsZSrioK68WBO7hGA=" alt="Gas Heater" class="w-full h-48 object-cover rounded-xl mb-4">
+  <h2 class="text-xl font-semibold" style="color:#004aad;">Gas Heater</h2>
+  <p class="text-sm text-gray-600 mt-1">Efficient LPG-powered heater for homes and small offices.</p>
+  <p class="text-lg font-bold mt-3" style="color:#333;">R1,200</p>
+  <button onclick="addToCart('Gas Heater', 1200)"
+    class="add-btn mt-4 text-white px-4 py-2 rounded-lg hover:scale-105 transition w-full"
+    style="background: linear-gradient(to right, #0078ff, #00c3ff);">
+    Add to Cart
+  </button>
+</div>
+
+<!-- Pressure Gauge -->
+<div class="border rounded-2xl p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 bg-white animate-slide-up delay-1500">
+  <img src="https://media.istockphoto.com/id/2161828205/photo/gas-regulator-isolated-on-a-white-background.jpg?s=612x612&w=0&k=20&c=AQgKr5AiBzACoLKc4Z9pW2n3wEF6szfAFBTRIBSPluk=" alt="Pressure Gauge" class="w-full h-48 object-cover rounded-xl mb-4">
+  <h2 class="text-xl font-semibold" style="color:#004aad;">Pressure Gauge</h2>
+  <p class="text-sm text-gray-600 mt-1">Reliable LPG pressure gauge for monitoring cylinder or system pressure.</p>
+  <p class="text-lg font-bold mt-3" style="color:#333;">R220</p>
+  <button onclick="addToCart('Pressure Gauge', 220)"
+    class="add-btn mt-4 text-white px-4 py-2 rounded-lg hover:scale-105 transition w-full"
+    style="background: linear-gradient(to right, #0078ff, #00c3ff);">
+    Add to Cart
+  </button>
+</div>
+
+    <!-- Custom Orders -->
+    <div class="border rounded-2xl p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 bg-white animate-slide-up delay-900">
+      <img src="https://media.istockphoto.com/id/1269824971/vector/gear-options-setting-icon-editable-vector-isolated-on-a-white-background.jpg?s=612x612&w=0&k=20&c=C-WaFlaZYyEKECa0AdNVF796KCkrNFKAbLPUA8qcZcs=" alt="Custom LPG Setup" class="w-full h-48 object-cover rounded-xl mb-4">
+      <h2 class="text-xl font-semibold" style="color:#004aad;">Customized LPG Setup</h2>
+      <p class="text-sm text-gray-600 mt-1">We design and install custom LPG systems for homes and businesses.</p>
+      <p class="text-lg font-bold mt-3" style="color:#333;">Quote on request</p>
+      <button onclick="requestQuote()"
+        class="add-btn mt-4 text-white px-4 py-2 rounded-lg hover:scale-105 transition w-full"
+        style="background: linear-gradient(to right, #0078ff, #00c3ff);">
+        Request Quote
+      </button>
+    </div>
+
+  </section>
+</main>
+
+
+<footer class="text-white"
+         style="
+         background: linear-gradient(90deg, #00195d, #0092f5);">
+  <div class="max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-4 gap-8">
+
+    <!-- About / Brand -->
+    <div class="space-y-2">
+      <h2 class="text-xl font-semibold">BluePlanet Utilities</h2>
+      <p class="text-sm opacity-90">
+        Affordable • Reliable • Safe Energy
+      </p>
+      <p class="text-sm opacity-90">Designed and maintained by BluePlanet Utilities</p>
+    </div>
+
+    <!-- Contact Info -->
+    <div>
+      <h3 class="text-lg font-semibold">Contact</h3>
+      <p class="text-sm">Email: <a href="mailto:support@blueplanet.co.za" class="hover:underline">support@blueplanet.co.za</a></p>
+      <p class="text-sm">Phone: <a href="tel:+27621028828" class="hover:underline">+27 62 102 8828</a></p>
+      <p class="text-sm">Address: 123 BluePlanet Street, Pretoria, South Africa</p>
+      <p class="text-sm">Hours: Mon-Fri 08:00-17:00</p>
+    </div>
+
+    <!-- Social Media -->
+    <div>
+      <h3 class="text-lg font-semibold mb-2">Follow Us</h3>
+      <div class="flex gap-4 text-white">
+        <a href="#" class="hover:text-blue-300" aria-label="LinkedIn"><i class="fa-brands fa-linkedin fa-lg"></i></a>
+        <a href="#" class="hover:text-blue-300" aria-label="Twitter"><i class="fa-brands fa-twitter fa-lg"></i></a>
+        <a href="#" class="hover:text-blue-300" aria-label="Facebook"><i class="fa-brands fa-facebook fa-lg"></i></a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="text-center text-sm pb-4">
+    <p class="opacity-80">© 2025 BluePlanet. All rights reserved.</p>
+  </div>
+</footer>
+
+<div id="toast" class="toast"></div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+// Update cart count on load
+updateCartCount();
+
+// Add product to cart
+function addToCart(name, price, event) {
+  const existing = cart.find(item => item.name === name);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ name, price, qty: 1 });
+  }
+  localStorage.setItem('cart', JSON.stringify(cart));
+  
+  updateCartCount();
+  showToast(`${name} added to cart`);
+  animateButton(event);
+  createFloatEffect(event);
+}
+
+// Update cart count
+function updateCartCount() {
+  const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+  const count = document.getElementById('cart-count');
+  const countMobile = document.getElementById('cart-count-mobile');
+  
+  [count, countMobile].forEach(el => {
+    if (!el) return;
+    if (totalItems > 0) {
+      el.textContent = totalItems;
+      el.classList.remove('hidden');
+    } else {
+      el.classList.add('hidden');
+    }
+  });
+}
+
+// Floating +1 bubble effect
+function createFloatEffect(event) {
+  const bubble = document.createElement('div');
+  bubble.className = 'float-bubble fixed z-50 bg-blue-500 text-white rounded-full px-2 py-1 text-sm animate-fade-up';
+  
+  const rect = event.target.getBoundingClientRect();
+  bubble.style.left = rect.left + rect.width / 2 + 'px';
+  bubble.style.top = rect.top - 20 + 'px';
+  bubble.innerText = '+1';
+  
+  document.body.appendChild(bubble);
+  setTimeout(() => bubble.remove(), 1000);
+}
+
+// Toast feedback
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  if (!toast) return;
+  toast.textContent = message;
+  toast.style.opacity = '1';
+  toast.style.transform = 'translateY(0)';
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(-10px)';
+  }, 2000);
+}
+
+// Button bounce animation
+function animateButton(event) {
+  document.querySelectorAll('.add-btn').forEach(btn => {
+    btn.classList.remove('animate-bounce');
+  });
+  if (event) {
+    const activeBtn = event.target;
+    activeBtn.classList.add('animate-bounce');
+    setTimeout(() => activeBtn.classList.remove('animate-bounce'), 500);
+  }
+}
+
+// Remove item from cart
+function removeFromCart(name) {
+    cart = cart.filter(item => item.name !== name);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    renderCart();
+    updateCartCount();
+}
+
+// Update quantity
+function updateQty(name, qty) {
+    cart = cart.map(item => {
+        if (item.name === name) item.qty = Math.max(1, Number(qty));
+        return item;
+    });
+    localStorage.setItem('cart', JSON.stringify(cart));
+    renderCart();
+    updateCartCount();
+}
+
+// Render cart page
+function renderCart() {
+    const container = document.getElementById('cart-items');
+    if (!container) return;
+
+    container.innerHTML = '';
+    let subtotal = 0;
+
+    cart.forEach(item => {
+        subtotal += item.price * item.qty;
+        const div = document.createElement('div');
+        div.className = 'flex items-center justify-between bg-white p-4 rounded-lg shadow mb-4';
+        div.innerHTML = `
+            <div>
+                <h3 class="font-semibold">${item.name}</h3>
+                <p>R${item.price} x <input type="number" value="${item.qty}" min="1" class="w-16 text-center" onchange="updateQty('${item.name}', this.value)"></p>
+            </div>
+            <div>
+                <span class="font-bold">R${item.price * item.qty}</span>
+                <button class="ml-4 text-red-500 font-bold" onclick="removeFromCart('${item.name}')">Remove</button>
+            </div>
+        `;
+        container.appendChild(div);
+    });
+
+    const vat = Math.round(subtotal * 0.15);
+    const total = subtotal + vat;
+    document.getElementById('subtotal').textContent = `R${subtotal}`;
+    document.getElementById('vat').textContent = `R${vat}`;
+    document.getElementById('total').textContent = `R${total}`;
+}
+
+// Checkout: send cart to server
+function proceedToCheckout() {
+    if (cart.length === 0) return alert("Your cart is empty");
+
+    fetch('/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cart })
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert('Checkout initiated');
+        localStorage.removeItem('cart');
+        window.location.href = '/thank-you';
+    })
+    .catch(err => alert('Error sending cart: ' + err));
+}
+
+// On page load render cart
+document.addEventListener('DOMContentLoaded', renderCart);
+</script>
+</body>
+</html>

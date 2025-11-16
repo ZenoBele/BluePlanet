@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home | BluePlanet Utilities</title>
+  <script src="js/script.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: #131217;
+    }
+	
+	/* Center spreading underline on hover */
+.nav-link, .nav-link-mobile {
+  position: relative;
+  transition: color 0.3s ease;
+}
+.nav-link::after, .nav-link-mobile::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 50%;
+  background-color: #01b9f5;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+.nav-link:hover::after, .nav-link-mobile:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+  </style>
+</head>
+<body class="overflow-x-hidden">
+
+<!-- Logo (top-left, not fixed) -->
+<div class="flex items-center gap-4 bg-white mt-6 ml-10 md:ml-32 p-3 pr-6 w-fit">
+  <img 
+    src="https://media.istockphoto.com/id/162542504/photo/earth-sunrise-in-space.webp?a=1&b=1&s=612x612&w=0&k=20&c=ExRs1QVRkYOcXXEcr7nKzXlT2LCe63pV9bIGH5fSkMs=" 
+    alt="BluePlanet Utilities Logo" 
+    class="w-16 h-16 rounded-full shadow-md">
+  <div>
+    <h1 class="text-2xl md:text-3xl font-semibold text-blue-900">BluePlanet</h1>
+    <p class="text-sm text-blue-600 opacity-90">Affordable • Reliable • Safe Energy</p>
+  </div>
+</div>
+
+<header id="main-header" 
+  class="fixed top-0 right-0 w-1/4 md:w-1/2 z-50 shadow-lg rounded-bl-3xl transition-all duration-300"
+  style="background: linear-gradient(90deg, #00195d, #0092f5); color: white; padding: 12px 0;">
+
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-10 py-4 md:py-6">
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-6 md:gap-8 relative text-md font-semibold">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+
+      <!-- Services Dropdown -->
+      <div class="relative group">
+        <a href="services.html" id="services-link" class="flex items-center gap-1 py-2 text-white cursor-pointer select-none">
+          Services <i class="fa-solid fa-caret-down"></i>
+        </a>
+        <div id="services-dropdown" class="absolute right-0 mt-2 w-48 bg-white text-blue-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+          <a href="products.html" class="block px-4 py-2 hover:bg-blue-100">Products</a>
+          <a href="orders.html" class="block px-4 py-2 hover:bg-blue-100">Orders</a>
+        </div>
+      </div>
+
+      <a href="safety.html" class="nav-link">Safety</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+
+      <!-- More Dropdown -->
+      <div class="relative group">
+        <a href="#" id="more-link" class="flex items-center gap-1 py-2 text-white cursor-pointer select-none">
+          More <i class="fa-solid fa-caret-down"></i>
+        </a>
+        <div id="more-dropdown" class="absolute right-0 mt-2 w-40 bg-white text-blue-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+          <a href="#" class="block px-4 py-2 hover:bg-blue-100">Blog</a>
+          <a href="#" class="block px-4 py-2 hover:bg-blue-100">Portfolio</a>
+          <a href="#" class="block px-4 py-2 hover:bg-blue-100">FAQ</a>
+        </div>
+      </div>
+
+      <!-- Sign In + Cart -->
+      <div class="ml-14 flex items-center gap-4">
+        <button class="px-5 py-2 rounded-lg font-medium text-blue-800 transition bg-white shadow-md hover:bg-blue-500 hover:text-white">
+          Sign In
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Hamburger -->
+    <div class="md:hidden">
+      <button id="hamburger" class="text-white focus:outline-none">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-gradient-to-b from-[#00195d] to-[#0092f5] px-6 pb-6 space-y-2">
+    <a href="index.html" class="block py-2 text-white nav-link-mobile">Home</a>
+    <a href="about.html" class="block py-2 text-white nav-link-mobile">About</a>
+
+    <!-- Services Dropdown (Mobile) -->
+    <div class="relative">
+      <a href="#" id="mobile-services" class="flex items-center justify-between py-2 text-white cursor-pointer select-none">
+        Services <i class="fa-solid fa-caret-down"></i>
+      </a>
+      <div id="mobile-services-dropdown" class="hidden bg-white text-blue-800 rounded-lg shadow-lg mt-1">
+        <a href="services.html" class="block px-4 py-2 hover:bg-blue-100">Services</a>
+        <a href="products.html" class="block px-4 py-2 hover:bg-blue-100">Products</a>
+        <a href="orders.html" class="block px-4 py-2 hover:bg-blue-100">Orders</a>
+      </div>
+    </div>
+
+    <a href="safety.html" class="block py-2 text-white nav-link-mobile">Safety</a>
+    <a href="contact.html" class="block py-2 text-white nav-link-mobile">Contact</a>
+
+    <!-- More Dropdown (Mobile) -->
+    <div class="relative">
+      <a href="#" id="mobile-more" class="flex items-center justify-between py-2 text-white cursor-pointer select-none">
+        More <i class="fa-solid fa-caret-down"></i>
+      </a>
+      <div id="mobile-more-dropdown" class="hidden bg-white text-blue-800 rounded-lg shadow-lg mt-1">
+        <a href="#" class="block px-4 py-2 hover:bg-blue-100">Blog</a>
+        <a href="#" class="block px-4 py-2 hover:bg-blue-100">Portfolio</a>
+        <a href="#" class="block px-4 py-2 hover:bg-blue-100">FAQ</a>
+      </div>
+    </div>
+
+    <button class="w-full mt-2 px-5 py-2 rounded-lg font-medium text-blue-800 bg-white shadow-md hover:bg-blue-500 hover:text-white">
+      Sign In
+    </button>
+  </div>
+</header>
+
+<main class="px-6 md:px-20 py-16 space-y-24">
+
+  <!-- Hero Section -->
+  <section class="flex flex-col-reverse md:flex-row items-center gap-10 opacity-0 transition duration-700 ease-out hero-section">
+    <!-- Text -->
+    <div class="md:w-1/2 space-y-6 text-center md:text-left">
+      <h1 class="text-5xl md:text-6xl font-bold" style="background: linear-gradient(90deg, #0ea5e9, #3b82f6); -webkit-background-clip: text; color: transparent;">
+        Affordable, Reliable, & Safe LPG Solutions
+      </h1>
+      <p class="text-gray-700 text-lg md:text-xl">
+        From households to businesses, we provide professional LPG installation, refills, maintenance, and contracts tailored to your needs.
+      </p>
+      <a href="#services" class="inline-block mt-4 px-8 py-3 rounded-lg font-medium text-white" style="background: linear-gradient(90deg,#3b82f6,#0ea5e9);" id="hero-cta">
+        Get Started
+      </a>
+    </div>
+    <!-- Image -->
+    <div class="md:w-1/2 slide-img-left">
+      <img src="https://media.istockphoto.com/id/1559360023/photo/dependence-of-oil-and-gas.jpg?s=612x612&w=0&k=20&c=QF3NqkFcsK650W87NyrRjC4vyUSHZwATT9qS0zuY6Z4=" alt="BluePlanet LPG Hero" class="rounded-xl shadow-md w-full h-[400px] object-cover">
+    </div>
+  </section>
+
+  <!-- Services Overview -->
+  <section id="services" class="space-y-16">
+    <h2 class="text-3xl font-semibold text-center mb-6" style="background: linear-gradient(90deg,#0ea5e9,#3b82f6); -webkit-background-clip: text; color: transparent;">
+      Our Core Services
+    </h2>
+    <div class="grid md:grid-cols-2 gap-10">
+      <!-- Service 1 -->
+      <div class="flex flex-col md:flex-row items-center gap-6 p-6 rounded-xl shadow-md opacity-0 service-preview" style="background: linear-gradient(90deg,#3b82f6,#60a5fa);">
+        <div class="md:w-1/2 text-white space-y-3 slide-text-left">
+          <h3 class="text-2xl font-semibold">LPG Installations</h3>
+          <p>Professional installations for homes, schools, and businesses with certified safety standards.</p>
+          <a href="services.html#installations" class="inline-block mt-2 px-5 py-2 rounded-lg text-white font-medium" style="background: linear-gradient(90deg,#0ea5e9,#3b82f6);">Learn More</a>
+        </div>
+        <div class="md:w-1/2 slide-img-right">
+          <img src="https://media.istockphoto.com/id/518273396/photo/propane-gas-for-home.webp?a=1&b=1&s=612x612&w=0&k=20&c=l734TVEgrKtxyUwnvj01-J5Jztd_Icwi8R4RMVcMGaU=" alt="LPG installation" class="rounded-xl w-full h-[200px] object-cover shadow-md">
+        </div>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="flex flex-col md:flex-row-reverse items-center gap-6 p-6 rounded-xl shadow-md opacity-0 service-preview" style="background: linear-gradient(90deg,#2563eb,#3b82f6);">
+        <div class="md:w-1/2 text-white space-y-3 slide-text-right">
+          <h3 class="text-2xl font-semibold">Maintenance & Safety</h3>
+          <p>Routine inspections, pressure tests, and 24/7 emergency support for peace of mind.</p>
+          <a href="services.html#maintenance" class="inline-block mt-2 px-5 py-2 rounded-lg text-white font-medium" style="background: linear-gradient(90deg,#3b82f6,#0ea5e9);">Learn More</a>
+        </div>
+        <div class="md:w-1/2 slide-img-left">
+          <img src="https://media.istockphoto.com/id/1299769540/photo/liquified-gas-storage-workers-writing-down-cylinder-serial-number.webp?a=1&b=1&s=612x612&w=0&k=20&c=uG0ewuyEqCLwunqMpQthoVQ78apnxhWnOVZ5NYFITII=" alt="LPG maintenance" class="rounded-xl w-full h-[200px] object-cover shadow-md">
+        </div>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="flex flex-col md:flex-row items-center gap-6 p-6 rounded-xl shadow-md opacity-0 service-preview" style="background: linear-gradient(90deg,#3b82f6,#60a5fa);">
+        <div class="md:w-1/2 text-white space-y-3 slide-text-left">
+          <h3 class="text-2xl font-semibold">Refills & Cylinder Exchanges</h3>
+          <p>Fast delivery and eco-friendly exchanges to keep your home or business running smoothly.</p>
+          <a href="services.html#refills" class="inline-block mt-2 px-5 py-2 rounded-lg text-white font-medium" style="background: linear-gradient(90deg,#0ea5e9,#3b82f6);">Learn More</a>
+        </div>
+        <div class="md:w-1/2 slide-img-right">
+          <img src="https://images.unsplash.com/photo-1654220691341-be23a137bd0c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8UmVmaWxscyUyMCUyNiUyMEN5bGluZGVyJTIwRXhjaGFuZ2VzfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600" alt="LPG refills" class="rounded-xl w-full h-[200px] object-cover shadow-md">
+        </div>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="flex flex-col md:flex-row-reverse items-center gap-6 p-6 rounded-xl shadow-md opacity-0 service-preview" style="background: linear-gradient(90deg,#2563eb,#3b82f6);">
+        <div class="md:w-1/2 text-white space-y-3 slide-text-right">
+          <h3 class="text-2xl font-semibold">Contracts & Bulk Supply</h3>
+          <p>Reliable LPG supply contracts for schools, catering, and restaurants to ensure uninterrupted service.</p>
+          <a href="services.html#contracts" class="inline-block mt-2 px-5 py-2 rounded-lg text-white font-medium" style="background: linear-gradient(90deg,#3b82f6,#0ea5e9);">Learn More</a>
+        </div>
+        <div class="md:w-1/2 slide-img-left">
+          <img src="https://media.istockphoto.com/id/1129159672/photo/red-cylinders-of-propane-gas-the-inscription-in-russian-propane.webp?a=1&b=1&s=612x612&w=0&k=20&c=pLmuq2Yj2ryGb8jvNWgKUuzDktIqv26nphyxJeI-l8Y=" alt="LPG bulk supply" class="rounded-xl w-full h-[200px] object-cover shadow-md">
+        </div>
+      </div>
+    </div>
+  </section>
+  
+<!-- How We Work / What We Offer Section -->
+<section class="space-y-12 opacity-0 transition duration-700 ease-out how-we-work" style="padding:40px; border-radius:15px; background-color: #ffffff;">
+  <h2 class="text-3xl md:text-4xl font-bold text-center mb-6" style="background: linear-gradient(90deg,#0ea5e9,#3b82f6); -webkit-background-clip: text; color: transparent;">
+    How We Work & What We Offer
+  </h2>
+  <div class="grid md:grid-cols-3 gap-10 text-center md:text-left">
+    <!-- Step 1 -->
+    <div class="space-y-4 slide-text-left">
+      <div class="w-16 h-16 mx-auto md:mx-0 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xl shadow-md">1</div>
+      <h3 class="text-2xl font-semibold text-blue-700">Consultation & Assessment</h3>
+      <p class="text-blue-600">We assess your home or business needs, understanding cylinder size, usage patterns, and safety requirements.</p>
+    </div>
+    <!-- Step 2 -->
+    <div class="space-y-4 slide-text-right">
+      <div class="w-16 h-16 mx-auto md:mx-0 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xl shadow-md">2</div>
+      <h3 class="text-2xl font-semibold text-blue-700">Installation & Setup</h3>
+      <p class="text-blue-600">Certified technicians carry out installations, refills, or exchanges safely and efficiently, following all safety standards.</p>
+    </div>
+    <!-- Step 3 -->
+    <div class="space-y-4 slide-text-left">
+      <div class="w-16 h-16 mx-auto md:mx-0 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xl shadow-md">3</div>
+      <h3 class="text-2xl font-semibold text-blue-700">Ongoing Support & Maintenance</h3>
+      <p class="text-blue-600">We offer regular maintenance, emergency support, and flexible contracts to ensure uninterrupted service.</p>
+    </div>
+  </div>
+  <div class="text-center mt-8">
+    <a href="services.html" class="inline-block px-8 py-3 rounded-lg font-medium bg-blue-600 text-white hover:bg-blue-500 hover:text-white" id="how-we-work-btn">
+      Learn More About Our Process
+    </a>
+  </div>
+</section>
+
+  <!-- About Preview -->
+  <section class="flex flex-col md:flex-row items-center gap-10 opacity-0 transition duration-700 ease-out about-preview" style="background: linear-gradient(90deg,#0ea5e9,#3b82f6); padding:40px; border-radius:15px;">
+    <div class="md:w-1/2 text-white slide-text-left space-y-4">
+      <h2 class="text-3xl font-semibold">About BluePlanet Utilities</h2>
+      <p>
+        We provide safe, efficient, and customized LPG solutions. Our mission is to ensure that every household and business has reliable access to gas.
+      </p>
+      <a href="about.html" class="inline-block mt-4 px-6 py-2 rounded-lg font-medium bg-white text-blue-600">Learn More</a>
+    </div>
+    <div class="md:w-1/2 slide-img-right">
+      <img src="https://media.istockphoto.com/id/163333167/photo/energy-waste-on-planet-earth.jpg?s=612x612&w=0&k=20&c=IOeQR2Z_dKfV1KzhQgvVteV1m9uOSGFSMHE3i6_u_Hc=" alt="About BluePlanet" class="rounded-xl w-full h-[300px] object-cover shadow-md">
+    </div>
+  </section>
+
+  <!-- Latest News -->
+  <section class="space-y-6 opacity-0 transition duration-700 ease-out latest-news">
+    <h2 class="text-3xl font-semibold text-center" style="background: linear-gradient(90deg,#0ea5e9,#3b82f6); -webkit-background-clip: text; color: transparent;">Latest Updates</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <article class="p-4 rounded-lg shadow-md bg-white slide-text-left">
+        <img src="https://media.istockphoto.com/id/1332896135/photo/gas-cylinder-tanks-with-safety-first-label-and-various-warning-signs-on-white-cement-wall.jpg?s=612x612&w=0&k=20&c=nsVHbn-L6Yew4N_5g-aI7M8U4Ie0F0IkSJfI1CTWMro=" alt="Blog 1" class="rounded-lg w-full h-40 object-cover mb-2">
+        <h3 class="font-semibold text-lg">Safety Tips for LPG Users</h3>
+        <p class="text-gray-700 text-sm">Learn how to handle LPG cylinders safely at home and business premises.</p>
+        <a href="#" class="text-blue-600 font-medium">Read More</a>
+      </article>
+      <article class="p-4 rounded-lg shadow-md bg-white slide-text-right">
+        <img src="https://media.istockphoto.com/id/2240963514/video/abstract-data-interface-for-energy-trading-with-oil-barrels-and-gas-canisters.avif?s=640x640&k=20&c=i1imzx4lVKV985k7mZv-O8POnS61PCr2uRiHq6Jv4NY=" alt="Blog 2" class="rounded-lg w-full h-40 object-cover mb-2">
+        <h3 class="font-semibold text-lg">Eco-Friendly Cylinder Exchange</h3>
+        <p class="text-gray-700 text-sm">Discover our sustainable LPG refill and exchange program to reduce waste.</p>
+        <a href="#" class="text-blue-600 font-medium">Read More</a>
+      </article>
+      <article class="p-4 rounded-lg shadow-md bg-white slide-text-left">
+        <img src="https://media.istockphoto.com/id/1364140059/photo/employee-benefits-help-to-get-the-best-human-resources-business-concept-3d-illustration.jpg?s=612x612&w=0&k=20&c=h3Cv0srGE7WzrjMQbYwyWLYfMBgcLyTodkDRmddjhdI=" alt="Blog 3" class="rounded-lg w-full h-40 object-cover mb-2">
+        <h3 class="font-semibold text-lg">Contracted Services Benefits</h3>
+        <p class="text-gray-700 text-sm">How our contract services help businesses save money and avoid downtime.</p>
+        <a href="#" class="text-blue-600 font-medium">Read More</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="text-center mt-16 opacity-0 transition duration-700 ease-out contact-cta">
+    <h2 class="text-3xl font-semibold mb-4" style="background: linear-gradient(90deg,#0ea5e9,#3b82f6); -webkit-background-clip: text; color: transparent;">Get in Touch Today</h2>
+    <p class="text-gray-700 mb-6 max-w-2xl mx-auto">Contact us for LPG installation, maintenance, refills, or custom contracts. We’re here to help!</p>
+    <a href="contact.html" class="inline-block px-8 py-3 rounded-lg text-white font-medium bounce-btn" style="background: linear-gradient(90deg,#3b82f6,#0ea5e9);">Contact Us Now</a>
+  </section>
+
+</main>
+
+<footer class="text-white mt-16"
+         style="
+         background: linear-gradient(90deg, #00195d, #0092f5);">
+  <div class="max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-4 gap-8">
+
+    <!-- About / Brand -->
+    <div class="space-y-2">
+      <h2 class="text-xl font-semibold">BluePlanet Utilities</h2>
+      <p class="text-sm opacity-90">
+        Affordable • Reliable • Safe Energy
+      </p>
+      <p class="text-sm opacity-90">Designed and maintained by BluePlanet Utilities</p>
+    </div>
+
+    <!-- Contact Info -->
+    <div>
+      <h3 class="text-lg font-semibold">Contact</h3>
+      <p class="text-sm">Email: <a href="mailto:support@blueplanet.co.za" class="hover:underline">support@blueplanet.co.za</a></p>
+      <p class="text-sm">Phone: <a href="tel:+27621028828" class="hover:underline">+27 62 102 8828</a></p>
+      <p class="text-sm">Address: 123 BluePlanet Street, Pretoria, South Africa</p>
+      <p class="text-sm">Hours: Mon-Fri 08:00-17:00</p>
+    </div>
+
+    <!-- Social Media -->
+    <div>
+      <h3 class="text-lg font-semibold mb-2">Follow Us</h3>
+      <div class="flex gap-4 text-white">
+        <a href="#" class="hover:text-blue-300" aria-label="LinkedIn"><i class="fa-brands fa-linkedin fa-lg"></i></a>
+        <a href="#" class="hover:text-blue-300" aria-label="Twitter"><i class="fa-brands fa-twitter fa-lg"></i></a>
+        <a href="#" class="hover:text-blue-300" aria-label="Facebook"><i class="fa-brands fa-facebook fa-lg"></i></a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="text-center text-sm pb-4">
+    <p class="opacity-80">© 2025 BluePlanet. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const section = document.querySelector('.how-we-work');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        section.style.opacity = 1;
+        section.style.transition = 'all 0.8s ease-out';
+
+        const textLeft = section.querySelectorAll('.slide-text-left');
+        const textRight = section.querySelectorAll('.slide-text-right');
+
+        textLeft.forEach(el => el.style.transform = 'translateX(0)');
+        textRight.forEach(el => el.style.transform = 'translateX(0)');
+
+        // Bounce button after 10s
+        const btn = section.querySelector('#how-we-work-btn');
+        if(btn){
+          btn.classList.remove('animate-bounce');
+          setTimeout(() => btn.classList.add('animate-bounce'), 10000);
+        }
+      }
+    });
+  }, { threshold: 0.4 });
+
+  // Set initial slide positions
+  const textLeft = section.querySelectorAll('.slide-text-left');
+  const textRight = section.querySelectorAll('.slide-text-right');
+  textLeft.forEach(el => el.style.transform = 'translateX(-100px)');
+  textRight.forEach(el => el.style.transform = 'translateX(100px)');
+
+  observer.observe(section);
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const sections = document.querySelectorAll('.hero-section, .service-preview, .about-preview, .latest-news, .contact-cta');
+
+  // Initialize slide positions
+  sections.forEach(section => {
+    const imgLeft = section.querySelector('.slide-img-left');
+    const imgRight = section.querySelector('.slide-img-right');
+    const textLeft = section.querySelector('.slide-text-left');
+    const textRight = section.querySelector('.slide-text-right');
+
+    if(imgLeft) imgLeft.style.transform = 'translateX(-100px)';
+    if(imgRight) imgRight.style.transform = 'translateX(100px)';
+    if(textLeft) textLeft.style.transform = 'translateX(100px)';
+    if(textRight) textRight.style.transform = 'translateX(-100px)';
+
+    section.style.opacity = 0;
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const section = entry.target;
+        section.style.opacity = 1;
+        section.style.transition = 'all 0.8s ease-out';
+
+        const imgLeft = section.querySelector('.slide-img-left');
+        const imgRight = section.querySelector('.slide-img-right');
+        const textLeft = section.querySelector('.slide-text-left');
+        const textRight = section.querySelector('.slide-text-right');
+
+        if(imgLeft) imgLeft.style.transform = 'translateX(0)';
+        if(imgRight) imgRight.style.transform = 'translateX(0)';
+        if(textLeft) textLeft.style.transform = 'translateX(0)';
+        if(textRight) textRight.style.transform = 'translateX(0)';
+
+        // Only bounce button in visible section
+        const btn = section.querySelector('.bounce-btn');
+        if(btn){
+          btn.classList.remove('animate-bounce'); // reset
+          setTimeout(() => btn.classList.add('animate-bounce'), 10000);
+        }
+      }
+    });
+  }, { threshold: 0.4 });
+
+  sections.forEach(section => observer.observe(section));
+});
+</script>
+</body>
+</html>

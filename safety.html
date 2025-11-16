@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Safety | BluePlanet Utilities</title>
+  <script src="js/script.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: #131217;
+    }
+	
+	/* Center spreading underline on hover */
+.nav-link, .nav-link-mobile {
+  position: relative;
+  transition: color 0.3s ease;
+}
+.nav-link::after, .nav-link-mobile::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 50%;
+  background-color: #01b9f5;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+.nav-link:hover::after, .nav-link-mobile:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+@keyframes bounceSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.bounce-btn {
+  animation: bounceSlow 3s ease-in-out infinite;
+}
+  </style>
+</head>
+<body class="overflow-x-hidden">
+
+<!-- Logo (top-left, not fixed) -->
+<div class="flex items-center gap-4 bg-white mt-6 ml-10 md:ml-32 p-3 pr-6 w-fit">
+  <img 
+    src="https://media.istockphoto.com/id/162542504/photo/earth-sunrise-in-space.webp?a=1&b=1&s=612x612&w=0&k=20&c=ExRs1QVRkYOcXXEcr7nKzXlT2LCe63pV9bIGH5fSkMs=" 
+    alt="BluePlanet Utilities Logo" 
+    class="w-16 h-16 rounded-full shadow-md">
+  <div>
+    <h1 class="text-2xl md:text-3xl font-semibold text-blue-900">BluePlanet</h1>
+    <p class="text-sm text-blue-600 opacity-90">Affordable • Reliable • Safe Energy</p>
+  </div>
+</div>
+
+<header id="main-header" 
+  class="fixed top-0 right-0 w-1/4 md:w-1/2 z-50 shadow-lg rounded-bl-3xl transition-all duration-300"
+  style="background: linear-gradient(90deg, #00195d, #0092f5); color: white; padding: 12px 0;">
+
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-10 py-4 md:py-6">
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-6 md:gap-8 relative text-md font-semibold">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+
+      <!-- Services Dropdown -->
+      <div class="relative group">
+        <a href="services.html" id="services-link" class="flex items-center gap-1 py-2 text-white cursor-pointer select-none">
+          Services <i class="fa-solid fa-caret-down"></i>
+        </a>
+        <div id="services-dropdown" class="absolute right-0 mt-2 w-48 bg-white text-blue-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+          <a href="products.html" class="block px-4 py-2 hover:bg-blue-100">Products</a>
+          <a href="orders.html" class="block px-4 py-2 hover:bg-blue-100">Orders</a>
+        </div>
+      </div>
+
+      <a href="safety.html" class="nav-link">Safety</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+
+      <!-- More Dropdown -->
+      <div class="relative group">
+        <a href="#" id="more-link" class="flex items-center gap-1 py-2 text-white cursor-pointer select-none">
+          More <i class="fa-solid fa-caret-down"></i>
+        </a>
+        <div id="more-dropdown" class="absolute right-0 mt-2 w-40 bg-white text-blue-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+          <a href="#" class="block px-4 py-2 hover:bg-blue-100">Blog</a>
+          <a href="#" class="block px-4 py-2 hover:bg-blue-100">Portfolio</a>
+          <a href="#" class="block px-4 py-2 hover:bg-blue-100">FAQ</a>
+        </div>
+      </div>
+
+      <!-- Sign In + Cart -->
+      <div class="ml-14 flex items-center gap-4">
+        <button class="px-5 py-2 rounded-lg font-medium text-blue-800 transition bg-white shadow-md hover:bg-blue-500 hover:text-white">
+          Sign In
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Hamburger -->
+    <div class="md:hidden">
+      <button id="hamburger" class="text-white focus:outline-none">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-gradient-to-b from-[#00195d] to-[#0092f5] px-6 pb-6 space-y-2">
+    <a href="index.html" class="block py-2 text-white nav-link-mobile">Home</a>
+    <a href="about.html" class="block py-2 text-white nav-link-mobile">About</a>
+
+    <!-- Services Dropdown (Mobile) -->
+    <div class="relative">
+      <a href="#" id="mobile-services" class="flex items-center justify-between py-2 text-white cursor-pointer select-none">
+        Services <i class="fa-solid fa-caret-down"></i>
+      </a>
+      <div id="mobile-services-dropdown" class="hidden bg-white text-blue-800 rounded-lg shadow-lg mt-1">
+        <a href="services.html" class="block px-4 py-2 hover:bg-blue-100">Services</a>
+        <a href="products.html" class="block px-4 py-2 hover:bg-blue-100">Products</a>
+        <a href="orders.html" class="block px-4 py-2 hover:bg-blue-100">Orders</a>
+      </div>
+    </div>
+
+    <a href="safety.html" class="block py-2 text-white nav-link-mobile">Safety</a>
+    <a href="contact.html" class="block py-2 text-white nav-link-mobile">Contact</a>
+
+    <!-- More Dropdown (Mobile) -->
+    <div class="relative">
+      <a href="#" id="mobile-more" class="flex items-center justify-between py-2 text-white cursor-pointer select-none">
+        More <i class="fa-solid fa-caret-down"></i>
+      </a>
+      <div id="mobile-more-dropdown" class="hidden bg-white text-blue-800 rounded-lg shadow-lg mt-1">
+        <a href="#" class="block px-4 py-2 hover:bg-blue-100">Blog</a>
+        <a href="#" class="block px-4 py-2 hover:bg-blue-100">Portfolio</a>
+        <a href="#" class="block px-4 py-2 hover:bg-blue-100">FAQ</a>
+      </div>
+    </div>
+
+    <button class="w-full mt-2 px-5 py-2 rounded-lg font-medium text-blue-800 bg-white shadow-md hover:bg-blue-500 hover:text-white">
+      Sign In
+    </button>
+  </div>
+</header>
+
+<main class="px-6 md:px-20 py-16 text-gray-800 bg-gradient-to-b from-white via-blue-300 to-white overflow-hidden">
+
+  <!-- Hero Section -->
+  <section class="text-center mb-20 relative">
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1603722402609-7acb08d20b75?auto=format&fit=crop&w=1400&q=80')] bg-cover bg-center opacity-10 rounded-3xl"></div>
+    <h1 class="text-5xl font-extrabold text-blue-700 relative z-10">Driven by Safety</h1>
+    <p class="text-lg max-w-2xl mx-auto mt-4 text-gray-700 relative z-10">
+      At <span class="font-semibold text-blue-600">BluePlanet Utilities</span>, we live by one principle — <span class="italic">Safety Above All.</span>  
+      Every product, every delivery, every connection is guided by strict health, safety, and environmental standards.
+    </p>
+    <a href="#contact" class="inline-block mt-6 px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-900 text-white font-semibold rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 bounce-btn">
+      Report a Safety Concern
+    </a>
+  </section>
+
+  <!-- General Safety -->
+  <section class="space-y-6">
+    <h2 class="text-3xl font-bold text-blue-700 border-l-4 border-blue-500 pl-3">LPGas General Safety</h2>
+    <div class="grid md:grid-cols-2 gap-8 mt-6">
+      <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+        <h3 class="font-semibold text-xl mb-2">⚖️ LPGas is Heavier Than Air</h3>
+        <p>Any leak will settle in low areas — keep ignition sources, rubbish, and combustible items far away from your tank or cylinder area.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+        <h3 class="font-semibold text-xl mb-2">❄️ Vapourises & Cools Rapidly</h3>
+        <p>LPGas can cause cold burns when spilled or touched without gloves. Always handle with protective gear.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+        <h3 class="font-semibold text-xl mb-2">💨 Non-Toxic, But Suffocating</h3>
+        <p>While non-toxic, LPGas in high concentrations can reduce oxygen — avoid enclosed areas and ensure proper ventilation.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+        <h3 class="font-semibold text-xl mb-2">👃 Scented for Your Safety</h3>
+        <p>A special odour is added so leaks can be detected. Never use a flame to check for leaks — use soapy water instead.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bulk Tank Safety -->
+  <section class="mt-20 space-y-6">
+    <h2 class="text-3xl font-bold text-blue-700 border-l-4 border-blue-500 pl-3">Bulk Tank Safety</h2>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-gradient-to-br from-blue-600 to-blue-900 text-white p-6 rounded-2xl shadow-md">
+        <h3 class="font-semibold text-xl mb-2">🔒 Keep Tanks Secure</h3>
+        <p>Ensure fences and gates remain locked. If no fencing, close valve covers securely and keep keys accessible to authorised personnel.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+        <h3 class="font-semibold text-xl mb-2">🌿 Maintain Clean Surroundings</h3>
+        <p>Keep the area free from grass, weeds, and rubbish. Never use chlorate-based weed killers — they can ignite.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+        <h3 class="font-semibold text-xl mb-2">🚫 No Ignition Sources</h3>
+        <p>Ban smoking, vehicles, and any electrical devices near installations. Maintain all warning signs clearly.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+        <h3 class="font-semibold text-xl mb-2">🧰 Installation Integrity</h3>
+        <p>Never modify or paint tanks. Only authorised BluePlanet engineers may perform maintenance or repairs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cylinder Safety -->
+  <section class="mt-20 space-y-6">
+    <h2 class="text-3xl font-bold text-blue-700 border-l-4 border-blue-500 pl-3">Cylinder Safety</h2>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+        <h3 class="font-semibold text-xl mb-2">💨 Keep Cylinders Ventilated</h3>
+        <p>Store in open areas, never in basements or sealed rooms. LPGas collects in low places and may ignite.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+        <h3 class="font-semibold text-xl mb-2">☀️ Keep Cool</h3>
+        <p>Do not place cylinders near direct sunlight or any heat source.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+        <h3 class="font-semibold text-xl mb-2">🧯 Use the Right Equipment</h3>
+        <p>Use hoses made for LPG (max 2m). Replace every two years and always secure with clamps at both ends.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+        <h3 class="font-semibold text-xl mb-2">🔧 Regulators & Washers</h3>
+        <p>Use the correct regulator for propane or butane. Inspect the rubber washer before each connection.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Emergency Procedures -->
+  <section class="mt-20 space-y-6">
+    <h2 class="text-3xl font-bold text-blue-700 border-l-4 border-blue-500 pl-3">Emergency Procedures</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+        <h3 class="font-semibold text-xl mb-2">🏠 If You Smell Gas Indoors</h3>
+        <ul class="list-disc pl-5 space-y-2 text-sm">
+          <li>Turn off the main valve immediately.</li>
+          <li>Extinguish flames and don’t use switches.</li>
+          <li>Ventilate by opening windows and doors.</li>
+          <li>Call your installer or technician at once.</li>
+        </ul>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+        <h3 class="font-semibold text-xl mb-2">🏡 If You Smell Gas Outdoors</h3>
+        <ul class="list-disc pl-5 space-y-2 text-sm">
+          <li>Turn off gas at the shut-off valve.</li>
+          <li>Keep people away and restrict access.</li>
+          <li>Extinguish flames immediately.</li>
+          <li>Move leaking cylinders outdoors safely.</li>
+        </ul>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+        <h3 class="font-semibold text-xl mb-2">🔥 Major Leak or Fire</h3>
+        <ul class="list-disc pl-5 space-y-2 text-sm">
+          <li>Evacuate everyone and stay upwind.</li>
+          <li>Call the fire department immediately.</li>
+          <li>Notify BluePlanet Utilities and inform them of storage locations.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="text-center mt-20 bg-gradient-to-r from-blue-600 to-blue-900 text-white p-12 rounded-3xl shadow-lg">
+    <h2 class="text-3xl font-bold mb-3">Safety Support, 24/7</h2>
+    <p class="max-w-2xl mx-auto mb-6 text-blue-100">
+      If you ever detect a gas leak, or suspect unsafe conditions, contact our emergency team immediately.  
+      We respond fast and keep your premises protected.
+    </p>
+    <a href="#contact" class="inline-block px-10 py-4 bg-white text-blue-600 font-semibold rounded-full shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300">
+      Contact Safety Team
+    </a>
+  </section>
+
+</main>
+
+<footer class="text-white"
+         style="
+         background: linear-gradient(90deg, #00195d, #0092f5);">
+  <div class="max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-4 gap-8">
+
+    <!-- About / Brand -->
+    <div class="space-y-2">
+      <h2 class="text-xl font-semibold">BluePlanet Utilities</h2>
+      <p class="text-sm opacity-90">
+        Affordable • Reliable • Safe Energy
+      </p>
+      <p class="text-sm opacity-90">Designed and maintained by BluePlanet Utilities</p>
+    </div>
+
+    <!-- Contact Info -->
+    <div>
+      <h3 class="text-lg font-semibold">Contact</h3>
+      <p class="text-sm">Email: <a href="mailto:support@blueplanet.co.za" class="hover:underline">support@blueplanet.co.za</a></p>
+      <p class="text-sm">Phone: <a href="tel:+27621028828" class="hover:underline">+27 62 102 8828</a></p>
+      <p class="text-sm">Address: 123 BluePlanet Street, Pretoria, South Africa</p>
+      <p class="text-sm">Hours: Mon-Fri 08:00-17:00</p>
+    </div>
+
+    <!-- Social Media -->
+    <div>
+      <h3 class="text-lg font-semibold mb-2">Follow Us</h3>
+      <div class="flex gap-4 text-white">
+        <a href="#" class="hover:text-blue-300" aria-label="LinkedIn"><i class="fa-brands fa-linkedin fa-lg"></i></a>
+        <a href="#" class="hover:text-blue-300" aria-label="Twitter"><i class="fa-brands fa-twitter fa-lg"></i></a>
+        <a href="#" class="hover:text-blue-300" aria-label="Facebook"><i class="fa-brands fa-facebook fa-lg"></i></a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="text-center text-sm pb-4">
+    <p class="opacity-80">© 2025 BluePlanet. All rights reserved.</p>
+  </div>
+</footer>
+</body>
+</html>

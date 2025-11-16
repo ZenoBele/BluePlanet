@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | BluePlanet Utilities</title>
+  <script src="js/script.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: #131217;
+    }
+	
+	/* Center spreading underline on hover */
+.nav-link, .nav-link-mobile {
+  position: relative;
+  transition: color 0.3s ease;
+}
+.nav-link::after, .nav-link-mobile::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 50%;
+  background-color: #01b9f5;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+.nav-link:hover::after, .nav-link-mobile:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* Animations */
+  .animate-fade-in { opacity: 0; animation: fadeIn 0.8s forwards; }
+  .animate-fade-in-up { opacity: 0; animation: fadeInUp 0.8s forwards; }
+  .animate-slide-left { opacity: 0; transform: translateX(-40px); animation: slideInLeft 0.8s forwards; }
+  .animate-slide-right { opacity: 0; transform: translateX(40px); animation: slideInRight 0.8s forwards; }
+
+  @keyframes fadeIn { to { opacity: 1; } }
+  @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+  @keyframes slideInLeft { to { opacity: 1; transform: translateX(0); } }
+  @keyframes slideInRight { to { opacity: 1; transform: translateX(0); } }
+
+  /* Chat bubbles */
+  .user-bubble {
+    background: #1e3a8a;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 16px 16px 0 16px;
+    max-width: 70%;
+    margin-left: auto;
+    word-wrap: break-word;
+  }
+  .bot-bubble {
+    background-color: #e0f2fe; /* blue-100 */
+    color: #1e3a8a; /* blue-900 */
+    padding: 8px 12px;
+    border-radius: 16px 16px 16px 0;
+    max-width: 70%;
+    margin-right: auto;
+    word-wrap: break-word;
+  }
+  
+  @keyframes fadeInSlide {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+  </style>
+</head>
+<body class="overflow-x-hidden">
+
+<!-- Logo (top-left, not fixed) -->
+<div class="flex items-center gap-4 bg-white mt-6 ml-10 md:ml-32 p-3 pr-6 w-fit">
+  <img 
+    src="https://media.istockphoto.com/id/162542504/photo/earth-sunrise-in-space.webp?a=1&b=1&s=612x612&w=0&k=20&c=ExRs1QVRkYOcXXEcr7nKzXlT2LCe63pV9bIGH5fSkMs=" 
+    alt="BluePlanet Utilities Logo" 
+    class="w-16 h-16 rounded-full shadow-md">
+  <div>
+    <h1 class="text-2xl md:text-3xl font-semibold text-blue-900">BluePlanet</h1>
+    <p class="text-sm text-blue-600 opacity-90">Affordable • Reliable • Safe Energy</p>
+  </div>
+</div>
+
+<header id="main-header" 
+  class="fixed top-0 right-0 w-1/4 md:w-1/2 z-50 shadow-lg rounded-bl-3xl transition-all duration-300"
+  style="background: linear-gradient(90deg, #00195d, #0092f5); color: white; padding: 12px 0;">
+
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-10 py-4 md:py-6">
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-6 md:gap-8 relative text-md font-semibold">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+
+      <!-- Services Dropdown -->
+      <div class="relative group">
+        <a href="services.html" id="services-link" class="flex items-center gap-1 py-2 text-white cursor-pointer select-none">
+          Services <i class="fa-solid fa-caret-down"></i>
+        </a>
+        <div id="services-dropdown" class="absolute right-0 mt-2 w-48 bg-white text-blue-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+          <a href="products.html" class="block px-4 py-2 hover:bg-blue-100">Products</a>
+          <a href="orders.html" class="block px-4 py-2 hover:bg-blue-100">Orders</a>
+        </div>
+      </div>
+
+      <a href="safety.html" class="nav-link">Safety</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+
+      <!-- More Dropdown -->
+      <div class="relative group">
+        <a href="#" id="more-link" class="flex items-center gap-1 py-2 text-white cursor-pointer select-none">
+          More <i class="fa-solid fa-caret-down"></i>
+        </a>
+        <div id="more-dropdown" class="absolute right-0 mt-2 w-40 bg-white text-blue-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+          <a href="#" class="block px-4 py-2 hover:bg-blue-100">Blog</a>
+          <a href="#" class="block px-4 py-2 hover:bg-blue-100">Portfolio</a>
+          <a href="#" class="block px-4 py-2 hover:bg-blue-100">FAQ</a>
+        </div>
+      </div>
+
+      <!-- Sign In + Cart -->
+      <div class="ml-14 flex items-center gap-4">
+        <button class="px-5 py-2 rounded-lg font-medium text-blue-800 transition bg-white shadow-md hover:bg-blue-500 hover:text-white">
+          Sign In
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Hamburger -->
+    <div class="md:hidden">
+      <button id="hamburger" class="text-white focus:outline-none">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-gradient-to-b from-[#00195d] to-[#0092f5] px-6 pb-6 space-y-2">
+    <a href="index.html" class="block py-2 text-white nav-link-mobile">Home</a>
+    <a href="about.html" class="block py-2 text-white nav-link-mobile">About</a>
+
+    <!-- Services Dropdown (Mobile) -->
+    <div class="relative">
+      <a href="#" id="mobile-services" class="flex items-center justify-between py-2 text-white cursor-pointer select-none">
+        Services <i class="fa-solid fa-caret-down"></i>
+      </a>
+      <div id="mobile-services-dropdown" class="hidden bg-white text-blue-800 rounded-lg shadow-lg mt-1">
+        <a href="services.html" class="block px-4 py-2 hover:bg-blue-100">Services</a>
+        <a href="products.html" class="block px-4 py-2 hover:bg-blue-100">Products</a>
+        <a href="orders.html" class="block px-4 py-2 hover:bg-blue-100">Orders</a>
+      </div>
+    </div>
+
+    <a href="safety.html" class="block py-2 text-white nav-link-mobile">Safety</a>
+    <a href="contact.html" class="block py-2 text-white nav-link-mobile">Contact</a>
+
+    <!-- More Dropdown (Mobile) -->
+    <div class="relative">
+      <a href="#" id="mobile-more" class="flex items-center justify-between py-2 text-white cursor-pointer select-none">
+        More <i class="fa-solid fa-caret-down"></i>
+      </a>
+      <div id="mobile-more-dropdown" class="hidden bg-white text-blue-800 rounded-lg shadow-lg mt-1">
+        <a href="#" class="block px-4 py-2 hover:bg-blue-100">Blog</a>
+        <a href="#" class="block px-4 py-2 hover:bg-blue-100">Portfolio</a>
+        <a href="#" class="block px-4 py-2 hover:bg-blue-100">FAQ</a>
+      </div>
+    </div>
+
+    <button class="w-full mt-2 px-5 py-2 rounded-lg font-medium text-blue-800 bg-white shadow-md hover:bg-blue-500 hover:text-white">
+      Sign In
+    </button>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 py-16 space-y-16">
+
+ <!-- Page Intro -->
+<section 
+  class="text-center space-y-4 shadow-xl" 
+  style="background: white; padding: 2rem; border-radius: 1rem;"
+>
+  <h1 
+    class="text-3xl md:text-4xl font-bold mb-2" 
+    style="background: red; -webkit-background-clip: text; color: transparent; animation: fadeInSlide 1s ease forwards;"
+  >
+    Contact Us
+  </h1>
+  <p 
+    class="text-blue-500 opacity-90" 
+    style="animation: fadeInSlide 1.2s ease forwards; animation-delay: 0.3s;"
+  >
+    We’re here to help! Fill out the form below or reach us via email, phone, or chat. We’ll get back to you as soon as possible.
+  </p>
+</section>
+
+  <!-- Contact Info + Map -->
+  <section class="grid md:grid-cols-2 gap-8 items-start">
+    <!-- Contact Info -->
+    <div class="space-y-6 animate-slide-left p-6">
+      <div>
+        <h2 class="text-xl font-semibold text-blue-900 mb-1">Email Address</h2>
+        <p class="text-blue-800">support@blueplanet.co.za</p>
+      </div>
+      <div>
+        <h2 class="text-xl font-semibold text-blue-900 mb-1">Phone Number</h2>
+        <p class="text-blue-800">+27 62 102 8828</p>
+      </div>
+      <div>
+        <h2 class="text-xl font-semibold text-blue-900 mb-1">Physical Address</h2>
+        <p class="text-blue-800">123 BluePlanet Street, Pretoria, South Africa</p>
+      </div>
+      <div>
+        <h2 class="text-xl font-semibold text-blue-900 mb-1">Business Hours</h2>
+        <p class="text-blue-800">
+          Mon - Fri: 08:00 - 17:00 <br>
+          Sat: 09:00 - 13:00 <br>
+          Sun: Closed
+        </p>
+      </div>
+      <div>
+        <h2 class="text-xl font-semibold text-blue-900 mb-1">Follow Us</h2>
+        <div class="flex gap-4 text-blue-800">
+          <a href="#" class="hover:text-blue-900 transition transform hover:scale-110" aria-label="LinkedIn"><i class="fa-brands fa-linkedin fa-lg"></i></a>
+          <a href="#" class="hover:text-blue-900 transition transform hover:scale-110" aria-label="Twitter"><i class="fa-brands fa-twitter fa-lg"></i></a>
+          <a href="#" class="hover:text-blue-900 transition transform hover:scale-110" aria-label="Facebook"><i class="fa-brands fa-facebook fa-lg"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Google Map Embed -->
+    <div class="w-full h-64 md:h-full rounded-lg overflow-hidden shadow-md animate-slide-right">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3303.8091197735297!2d28.2293!3d-25.7475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9565b3b5c6b8b5%3A0x123456789abcdef!2sPretoria%2C%20South%20Africa!5e0!3m2!1sen!2sza!4v1699999999999!5m2!1sen!2sza"
+        class="w-full h-full border-0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Form + Chat Side by Side -->
+  <section class="grid md:grid-cols-2 gap-8 items-start">
+    <!-- Contact Form -->
+    <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-xl shadow-lg animate-fade-in-up">
+      <h2 class="text-2xl font-semibold text-blue-900 mb-4">Send Us a Message</h2>
+      <form id="contact-form" class="space-y-4">
+        <input type="text" name="name" placeholder="Your Name" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition hover:shadow-md">
+        <input type="email" name="email" placeholder="Your Email" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition hover:shadow-md">
+        <textarea name="message" rows="5" placeholder="Your Message" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition hover:shadow-md"></textarea>
+
+        <div class="flex justify-center">
+          <button type="submit" class="px-8 py-2 mb-2 bg-gradient-to-r from-blue-800 to-blue-900 text-white font-medium rounded-lg hover:from-blue-900 hover:to-blue-800 transition transform hover:scale-105">
+            Send Message
+          </button>
+        </div>
+      </form>
+      <p id="form-confirmation" class="text-green-600 mt-4 hidden animate-fade-in">Thank you! Your message has been received. We’ll reply within 24 hours.</p>
+    </div>
+
+    <!-- Chatbot -->
+    <div class="bg-gradient-to-br from-blue-900 to-blue-300 rounded-xl shadow-lg p-6 animate-fade-in-up">
+      <h2 class="text-2xl font-semibold text-white mb-4">Live Chat</h2>
+      <div id="chatbot" class="rounded-lg p-4 bg-white shadow-inner space-y-2">
+        <div id="chat-messages" class="h-64 overflow-y-auto p-2 space-y-2 scroll-smooth">
+          <!-- Messages will appear here -->
+        </div>
+        <div class="flex gap-2 mt-2">
+          <input id="chat-input" type="text" placeholder="Ask me anything..." class="flex-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition hover:shadow-md">
+          <button id="chat-send" class="px-4 py-2 bg-blue-900 text-white rounded-md hover:bg-blue-800 transition transform hover:scale-105">Send</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+
+ <footer class="text-white mt-16"
+         style="
+         background: linear-gradient(90deg, #00195d, #0092f5);">
+  <div class="max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-4 gap-8">
+
+    <!-- About / Brand -->
+    <div class="space-y-2">
+      <h2 class="text-xl font-semibold">BluePlanet Utilities</h2>
+      <p class="text-sm opacity-90">
+        Affordable • Reliable • Safe Energy
+      </p>
+      <p class="text-sm opacity-90">Designed and maintained by BluePlanet Utilities</p>
+    </div>
+
+    <!-- Contact Info -->
+    <div>
+      <h3 class="text-lg font-semibold">Contact</h3>
+      <p class="text-sm">Email: <a href="mailto:support@blueplanet.co.za" class="hover:underline">support@blueplanet.co.za</a></p>
+      <p class="text-sm">Phone: <a href="tel:+27621028828" class="hover:underline">+27 62 102 8828</a></p>
+      <p class="text-sm">Address: 123 BluePlanet Street, Pretoria, South Africa</p>
+      <p class="text-sm">Hours: Mon-Fri 08:00-17:00</p>
+    </div>
+
+    <!-- Social Media -->
+    <div>
+      <h3 class="text-lg font-semibold mb-2">Follow Us</h3>
+      <div class="flex gap-4 text-white">
+        <a href="#" class="hover:text-blue-300" aria-label="LinkedIn"><i class="fa-brands fa-linkedin fa-lg"></i></a>
+        <a href="#" class="hover:text-blue-300" aria-label="Twitter"><i class="fa-brands fa-twitter fa-lg"></i></a>
+        <a href="#" class="hover:text-blue-300" aria-label="Facebook"><i class="fa-brands fa-facebook fa-lg"></i></a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="text-center text-sm pb-4">
+    <p class="opacity-80">© 2025 BluePlanet. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ---------------------------
+     CONTACT FORM CONFIRMATION
+  ---------------------------- */
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const confirmation = document.getElementById('form-confirmation');
+      if (confirmation) {
+        confirmation.classList.remove('hidden');
+        confirmation.classList.add('animate-fade-in');
+      }
+      this.reset();
+    });
+  }
+
+  /* ---------------------------
+     SIMPLE AI-STYLE CHATBOT
+  ---------------------------- */
+  const chatInput = document.getElementById('chat-input');
+  const chatSend = document.getElementById('chat-send');
+  const chatMessages = document.getElementById('chat-messages');
+
+  const botResponses = [
+    "Hi there! 👋 How can I help you today?",
+    "Could you tell me a bit more about that?",
+    "Our support team will get back to you soon.",
+    "You can also reach us via email or phone for faster replies.",
+    "Thanks for contacting us! 😊"
+  ];
+
+  if (chatInput && chatSend && chatMessages) {
+    const createBubble = (text, className) => {
+      const bubble = document.createElement('div');
+      bubble.className = `${className} animate-bubble`;
+      bubble.textContent = text;
+      chatMessages.appendChild(bubble);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      return bubble;
+    };
+
+    const botReply = () => {
+      const response = botResponses[Math.floor(Math.random() * botResponses.length)];
+      setTimeout(() => createBubble(response, 'bot-bubble'), 600);
+    };
+
+    chatSend.addEventListener('click', () => {
+      const msg = chatInput.value.trim();
+      if (!msg) return;
+      createBubble(msg, 'user-bubble');
+      chatInput.value = '';
+      botReply();
+    });
+
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') chatSend.click();
+    });
+  }
+
+});
+</script>
+</body>
+</html>

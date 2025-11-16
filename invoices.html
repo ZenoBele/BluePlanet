@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoices & Receipts - BluePlanet Utilities</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <div class="min-h-screen flex flex-col md:flex-row">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gradient-to-b from-blue-500 to-blue-700 text-white flex flex-col">
+      <div class="p-6 text-center">
+        <h1 class="text-2xl font-bold">BluePlanet</h1>
+        <span class="opacity-80 text-sm">Manager Panel</span>
+      </div>
+      <nav class="mt-8 flex-1">
+        <a href="admin.html" class="flex items-center px-6 py-3 hover:bg-blue-800 rounded-md gap-3"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+        <a href="invoices.html" class="flex items-center px-6 py-3 hover:bg-blue-800 rounded-md gap-3 bg-blue-900"><i class="fa-solid fa-receipt"></i> Invoices</a>
+        <a href="customers.html" class="flex items-center px-6 py-3 hover:bg-blue-800 rounded-md gap-3"><i class="fa-solid fa-users"></i> Customers</a>
+      </nav>
+      <div class="p-6">
+        <button class="w-full px-4 py-2 rounded-lg font-bold text-blue-600 bg-white hover:brightness-110">Logout</button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col">
+      <!-- Topbar -->
+      <header class="flex justify-between items-center px-6 py-4 shadow-md bg-white sticky top-0 z-10">
+        <h2 class="text-2xl font-semibold text-gray-700">Invoices & Receipts</h2>
+        <div class="flex items-center gap-4">
+          <input type="text" placeholder="Search by client or invoice #" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
+          <button class="relative text-gray-600 hover:text-gray-800">
+            <i class="fa-solid fa-bell"></i>
+            <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Content -->
+      <main class="p-6 space-y-8">
+        <!-- Company Info / Receipt Header -->
+        <section class="bg-white rounded-xl shadow-md p-6 space-y-2">
+          <h1 class="text-2xl font-bold text-blue-600">BluePlanet Utilities</h1>
+          <p>123 Energy Street, Johannesburg, South Africa</p>
+          <p>Phone: +27 11 123 4567 | Email: info@blueplanet.co.za</p>
+          <p>VAT Number: 1234567890</p>
+        </section>
+
+        <!-- Receipts List -->
+        <section class="bg-white rounded-xl shadow-md p-6 space-y-4">
+          <h2 class="text-xl font-semibold text-blue-600 mb-4">All Receipts</h2>
+          <table class="min-w-full border border-gray-200">
+            <thead class="bg-blue-100 text-left">
+              <tr>
+                <th class="px-4 py-2">#Invoice</th>
+                <th class="px-4 py-2">Client Name</th>
+                <th class="px-4 py-2">Service</th>
+                <th class="px-4 py-2">Amount (R)</th>
+                <th class="px-4 py-2">Date</th>
+                <th class="px-4 py-2">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              <tr>
+                <td class="px-4 py-2 font-medium">INV-001</td>
+                <td class="px-4 py-2">Sunrise School</td>
+                <td class="px-4 py-2">LPG Installation</td>
+                <td class="px-4 py-2">850</td>
+                <td class="px-4 py-2">2025-11-10</td>
+                <td class="px-4 py-2">
+                  <button class="px-3 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-600">Print</button>
+                  <button class="px-3 py-1 rounded-lg bg-green-500 text-white hover:bg-green-600">Send</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-medium">INV-002</td>
+                <td class="px-4 py-2">Happy Catering</td>
+                <td class="px-4 py-2">Cylinder Refill</td>
+                <td class="px-4 py-2">200</td>
+                <td class="px-4 py-2">2025-11-09</td>
+                <td class="px-4 py-2">
+                  <button class="px-3 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-600">Print</button>
+                  <button class="px-3 py-1 rounded-lg bg-green-500 text-white hover:bg-green-600">Send</button>
+                </td>
+              </tr>
+              <!-- Add more rows as needed -->
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Send Receipt Form -->
+        <section class="bg-white rounded-xl shadow-md p-6 space-y-4">
+          <h2 class="text-xl font-semibold text-blue-600">Send Receipt to Client</h2>
+          <form class="space-y-4">
+            <div class="grid md:grid-cols-2 gap-4">
+              <input type="text" placeholder="Client Name" class="px-4 py-2 rounded-lg border border-gray-300 w-full">
+              <input type="email" placeholder="Client Email" class="px-4 py-2 rounded-lg border border-gray-300 w-full">
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+              <input type="text" placeholder="Invoice #" class="px-4 py-2 rounded-lg border border-gray-300 w-full">
+              <input type="number" placeholder="Amount (R)" class="px-4 py-2 rounded-lg border border-gray-300 w-full">
+            </div>
+            <textarea placeholder="Optional message" class="px-4 py-2 rounded-lg border border-gray-300 w-full h-24"></textarea>
+            <button type="submit" class="px-6 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 font-medium">Send Receipt</button>
+          </form>
+        </section>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

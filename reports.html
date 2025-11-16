@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports & Analytics - Manager Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    .sidebar-bg { background: linear-gradient(180deg, #0ea5e9, #3b82f6, #60a5fa); }
+    .widget-bg { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+  </style>
+</head>
+<body class="flex h-screen bg-gray-100 font-sans">
+
+  <!-- Sidebar -->
+  <aside class="w-64 sidebar-bg text-white flex flex-col">
+    <div class="p-6 flex flex-col items-center gap-2">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/LPG_gas_cylinder_icon.png" 
+           alt="Logo" class="w-16 h-16 rounded-full shadow-md bg-white p-1">
+      <h1 class="text-xl font-bold">BluePlanet</h1>
+      <span class="text-sm opacity-80">Manager Panel</span>
+    </div>
+    <nav class="mt-8 flex-1">
+      <a href="admin.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+      <a href="customerManage.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-users"></i> Customers</a>
+      <a href="serviceManage.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-gear"></i> Services</a>
+      <a href="contracts.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-file-contract"></i> Contracts</a>
+      <a href="manageOrders.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-box"></i> Orders</a>
+	  <a href="sales.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-box"></i> Sales</a>
+      <a href="reports.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-chart-line"></i> Reports</a>
+      <a href="settings.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-user-gear"></i> Settings</a>
+    </nav>
+    <div class="p-6">
+      <button class="w-full px-4 py-2 rounded-lg font-bold text-blue-600 bg-white hover:brightness-110">Logout</button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="flex-1 flex flex-col overflow-y-auto">
+    <!-- Topbar -->
+    <header class="flex justify-between items-center px-6 py-4 shadow-md bg-white sticky top-0 z-10">
+      <h2 class="text-2xl font-semibold text-gray-700">Reports & Analytics</h2>
+      <div class="flex items-center gap-4">
+        <div class="relative">
+          <input type="text" placeholder="Search..." class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
+          <i class="fa-solid fa-magnifying-glass absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+        </div>
+        <button class="relative text-gray-600 hover:text-gray-800">
+          <i class="fa-solid fa-bell"></i>
+          <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Dashboard Content -->
+    <main class="p-6 space-y-8">
+      <!-- Filters -->
+      <div class="bg-white p-4 rounded-xl shadow-md flex flex-wrap gap-4 items-center">
+        <label class="flex flex-col">
+          <span class="font-medium text-gray-700">Date From</span>
+          <input type="date" class="border rounded-lg px-3 py-2 mt-1">
+        </label>
+        <label class="flex flex-col">
+          <span class="font-medium text-gray-700">Date To</span>
+          <input type="date" class="border rounded-lg px-3 py-2 mt-1">
+        </label>
+        <label class="flex flex-col">
+          <span class="font-medium text-gray-700">Service Type</span>
+          <select class="border rounded-lg px-3 py-2 mt-1">
+            <option>All</option>
+            <option>Installation</option>
+            <option>Refill</option>
+            <option>Maintenance</option>
+          </select>
+        </label>
+        <button class="bg-blue-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-600 transition">Apply Filters</button>
+      </div>
+
+      <!-- Summary Widgets -->
+      <div class="grid md:grid-cols-4 gap-6">
+        <div class="widget-bg rounded-xl p-6 text-white shadow-md flex flex-col gap-2">
+          <h3 class="text-xl font-semibold">Total Customers</h3>
+          <p class="text-3xl font-bold">128</p>
+        </div>
+        <div class="widget-bg rounded-xl p-6 text-white shadow-md flex flex-col gap-2">
+          <h3 class="text-xl font-semibold">Total Refills</h3>
+          <p class="text-3xl font-bold">450</p>
+        </div>
+        <div class="widget-bg rounded-xl p-6 text-white shadow-md flex flex-col gap-2">
+          <h3 class="text-xl font-semibold">Revenue</h3>
+          <p class="text-3xl font-bold">R 124,500</p>
+        </div>
+        <div class="widget-bg rounded-xl p-6 text-white shadow-md flex flex-col gap-2">
+          <h3 class="text-xl font-semibold">Pending Orders</h3>
+          <p class="text-3xl font-bold">7</p>
+        </div>
+      </div>
+
+      <!-- Charts Section -->
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-xl shadow-md p-6 h-72 flex items-center justify-center">
+          <span class="text-gray-400">Revenue Chart Placeholder</span>
+        </div>
+        <div class="bg-white rounded-xl shadow-md p-6 h-72 flex items-center justify-center">
+          <span class="text-gray-400">Refills / Services Chart Placeholder</span>
+        </div>
+      </div>
+
+      <!-- Detailed Table -->
+      <div class="bg-white p-6 rounded-xl shadow-md overflow-x-auto">
+        <h3 class="text-xl font-semibold mb-4">Detailed Service Report</h3>
+        <table class="min-w-full border border-gray-200">
+          <thead class="bg-blue-500 text-white">
+            <tr>
+              <th class="px-4 py-2 text-left">Date</th>
+              <th class="px-4 py-2 text-left">Customer</th>
+              <th class="px-4 py-2 text-left">Service Type</th>
+              <th class="px-4 py-2 text-left">Amount (R)</th>
+              <th class="px-4 py-2 text-left">Status</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <tr class="border-b">
+              <td class="px-4 py-2">2025-11-01</td>
+              <td class="px-4 py-2">Sunrise School</td>
+              <td class="px-4 py-2">Installation</td>
+              <td class="px-4 py-2">850</td>
+              <td class="px-4 py-2">Completed</td>
+            </tr>
+            <tr class="border-b">
+              <td class="px-4 py-2">2025-11-02</td>
+              <td class="px-4 py-2">BlueBite Restaurant</td>
+              <td class="px-4 py-2">Refill</td>
+              <td class="px-4 py-2">200</td>
+              <td class="px-4 py-2">Pending</td>
+            </tr>
+            <tr class="border-b">
+              <td class="px-4 py-2">2025-11-03</td>
+              <td class="px-4 py-2">Harmony Catering</td>
+              <td class="px-4 py-2">Maintenance</td>
+              <td class="px-4 py-2">450</td>
+              <td class="px-4 py-2">Completed</td>
+            </tr>
+            <!-- More rows -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

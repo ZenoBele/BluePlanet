@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Management - BluePlanet Utilities</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    .sidebar-bg {
+      background: linear-gradient(180deg, #0ea5e9, #3b82f6, #60a5fa);
+    }
+    .btn-gradient {
+      background: linear-gradient(90deg,#3b82f6,#0ea5e9);
+    }
+  </style>
+</head>
+<body class="flex h-screen bg-gray-100 font-sans">
+
+  <!-- Sidebar -->
+  <aside class="w-64 sidebar-bg text-white flex flex-col">
+    <div class="p-6 flex flex-col items-center gap-2">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/LPG_gas_cylinder_icon.png" 
+           alt="Logo" class="w-16 h-16 rounded-full shadow-md bg-white p-1">
+      <h1 class="text-xl font-bold">BluePlanet</h1>
+      <span class="text-sm opacity-80">Manager Panel</span>
+    </div>
+    <nav class="mt-8 flex-1">
+      <a href="admin.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+      <a href="customerManage.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-users"></i> Customers</a>
+      <a href="serviceManage.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-gear"></i> Services</a>
+      <a href="contracts.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-file-contract"></i> Contracts</a>
+      <a href="manageOrders.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-box"></i> Orders</a>
+	  <a href="sales.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-box"></i> Sales</a>
+      <a href="reports.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-chart-line"></i> Reports</a>
+      <a href="settings.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-user-gear"></i> Settings</a>
+    </nav>
+    <div class="p-6">
+      <button class="w-full px-4 py-2 rounded-lg font-bold text-blue-600 bg-white hover:brightness-110">Logout</button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="flex-1 flex flex-col overflow-y-auto">
+    <!-- Topbar -->
+    <header class="flex justify-between items-center px-6 py-4 shadow-md bg-white sticky top-0 z-10">
+      <h2 class="text-2xl font-semibold text-gray-700">Customer Management</h2>
+      <div class="flex items-center gap-4">
+        <div class="relative">
+          <input type="text" placeholder="Search customers..." class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
+          <i class="fa-solid fa-magnifying-glass absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+        </div>
+        <button class="btn-gradient px-4 py-2 rounded-lg text-white font-semibold hover:brightness-110">Add Customer</button>
+      </div>
+    </header>
+
+    <!-- Dashboard Content -->
+    <main class="p-6 space-y-8">
+      <!-- Stats -->
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-blue-500 text-white rounded-xl p-6 shadow-md flex flex-col gap-2">
+          <h3 class="text-xl font-semibold">Total Customers</h3>
+          <p class="text-3xl font-bold">128</p>
+        </div>
+        <div class="bg-blue-400 text-white rounded-xl p-6 shadow-md flex flex-col gap-2">
+          <h3 class="text-xl font-semibold">Active</h3>
+          <p class="text-3xl font-bold">110</p>
+        </div>
+        <div class="bg-blue-300 text-white rounded-xl p-6 shadow-md flex flex-col gap-2">
+          <h3 class="text-xl font-semibold">Inactive</h3>
+          <p class="text-3xl font-bold">18</p>
+        </div>
+      </div>
+
+      <!-- Customers Table -->
+      <div class="bg-white rounded-xl shadow-md p-6">
+        <h3 class="text-xl font-semibold mb-4">Customer List</h3>
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead>
+              <tr class="bg-blue-50">
+                <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">#</th>
+                <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Name</th>
+                <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Email</th>
+                <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Phone</th>
+                <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Status</th>
+                <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              <tr>
+                <td class="px-6 py-4">1</td>
+                <td class="px-6 py-4">John Doe</td>
+                <td class="px-6 py-4">john@example.com</td>
+                <td class="px-6 py-4">+27 82 123 4567</td>
+                <td class="px-6 py-4">
+                  <span class="px-2 py-1 rounded-full bg-green-200 text-green-800 text-sm">Active</span>
+                </td>
+                <td class="px-6 py-4 flex gap-2">
+                  <button class="px-3 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition">Edit</button>
+                  <button class="px-3 py-1 rounded-lg bg-red-500 text-white hover:bg-red-600 transition">Delete</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4">2</td>
+                <td class="px-6 py-4">Mary Smith</td>
+                <td class="px-6 py-4">mary@example.com</td>
+                <td class="px-6 py-4">+27 82 765 4321</td>
+                <td class="px-6 py-4">
+                  <span class="px-2 py-1 rounded-full bg-yellow-200 text-yellow-800 text-sm">Inactive</span>
+                </td>
+                <td class="px-6 py-4 flex gap-2">
+                  <button class="px-3 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition">Edit</button>
+                  <button class="px-3 py-1 rounded-lg bg-red-500 text-white hover:bg-red-600 transition">Delete</button>
+                </td>
+              </tr>
+              <!-- Add more rows dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

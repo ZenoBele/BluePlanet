@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orders | BluePlanet Utilities</title>
+  <script src="js/script.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: #131217;
+    }
+	
+	/* Center spreading underline on hover */
+.nav-link, .nav-link-mobile {
+  position: relative;
+  transition: color 0.3s ease;
+}
+.nav-link::after, .nav-link-mobile::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 50%;
+  background-color: #01b9f5;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+.nav-link:hover::after, .nav-link-mobile:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+  </style>
+</head>
+<body class="overflow-x-hidden">
+
+<!-- Logo (top-left, not fixed) -->
+<div class="flex items-center gap-4 bg-white mt-6 ml-10 md:ml-32 p-3 pr-6 w-fit">
+  <img 
+    src="https://media.istockphoto.com/id/162542504/photo/earth-sunrise-in-space.webp?a=1&b=1&s=612x612&w=0&k=20&c=ExRs1QVRkYOcXXEcr7nKzXlT2LCe63pV9bIGH5fSkMs=" 
+    alt="BluePlanet Utilities Logo" 
+    class="w-16 h-16 rounded-full shadow-md">
+  <div>
+    <h1 class="text-2xl md:text-3xl font-semibold text-blue-900">BluePlanet</h1>
+    <p class="text-sm text-blue-600 opacity-90">Affordable • Reliable • Safe Energy</p>
+  </div>
+</div>
+
+<header id="main-header" 
+  class="fixed top-0 right-0 w-1/4 md:w-1/2 z-50 shadow-lg rounded-bl-3xl transition-all duration-300"
+  style="background: linear-gradient(90deg, #00195d, #0092f5); color: white; padding: 12px 0;">
+
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-10 py-4 md:py-6">
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-6 md:gap-8 relative text-md font-semibold">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+
+      <!-- Services Dropdown -->
+      <div class="relative group">
+        <a href="services.html" id="services-link" class="flex items-center gap-1 py-2 text-white cursor-pointer select-none">
+          Services <i class="fa-solid fa-caret-down"></i>
+        </a>
+        <div id="services-dropdown" class="absolute right-0 mt-2 w-48 bg-white text-blue-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+          <a href="products.html" class="block px-4 py-2 hover:bg-blue-100">Products</a>
+          <a href="orders.html" class="block px-4 py-2 hover:bg-blue-100">Orders</a>
+        </div>
+      </div>
+
+      <a href="safety.html" class="nav-link">Safety</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+
+      <!-- More Dropdown -->
+      <div class="relative group">
+        <a href="#" id="more-link" class="flex items-center gap-1 py-2 text-white cursor-pointer select-none">
+          More <i class="fa-solid fa-caret-down"></i>
+        </a>
+        <div id="more-dropdown" class="absolute right-0 mt-2 w-40 bg-white text-blue-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+          <a href="#" class="block px-4 py-2 hover:bg-blue-100">Blog</a>
+          <a href="#" class="block px-4 py-2 hover:bg-blue-100">Portfolio</a>
+          <a href="#" class="block px-4 py-2 hover:bg-blue-100">FAQ</a>
+        </div>
+      </div>
+
+      <!-- Sign In + Cart -->
+      <div class="ml-14 flex items-center gap-4">
+        <button class="px-5 py-2 rounded-lg font-medium text-blue-800 transition bg-white shadow-md hover:bg-blue-500 hover:text-white">
+          Sign In
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Hamburger -->
+    <div class="md:hidden">
+      <button id="hamburger" class="text-white focus:outline-none">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-gradient-to-b from-[#00195d] to-[#0092f5] px-6 pb-6 space-y-2">
+    <a href="index.html" class="block py-2 text-white nav-link-mobile">Home</a>
+    <a href="about.html" class="block py-2 text-white nav-link-mobile">About</a>
+
+    <!-- Services Dropdown (Mobile) -->
+    <div class="relative">
+      <a href="#" id="mobile-services" class="flex items-center justify-between py-2 text-white cursor-pointer select-none">
+        Services <i class="fa-solid fa-caret-down"></i>
+      </a>
+      <div id="mobile-services-dropdown" class="hidden bg-white text-blue-800 rounded-lg shadow-lg mt-1">
+        <a href="services.html" class="block px-4 py-2 hover:bg-blue-100">Services</a>
+        <a href="products.html" class="block px-4 py-2 hover:bg-blue-100">Products</a>
+        <a href="orders.html" class="block px-4 py-2 hover:bg-blue-100">Orders</a>
+      </div>
+    </div>
+
+    <a href="safety.html" class="block py-2 text-white nav-link-mobile">Safety</a>
+    <a href="contact.html" class="block py-2 text-white nav-link-mobile">Contact</a>
+
+    <!-- More Dropdown (Mobile) -->
+    <div class="relative">
+      <a href="#" id="mobile-more" class="flex items-center justify-between py-2 text-white cursor-pointer select-none">
+        More <i class="fa-solid fa-caret-down"></i>
+      </a>
+      <div id="mobile-more-dropdown" class="hidden bg-white text-blue-800 rounded-lg shadow-lg mt-1">
+        <a href="#" class="block px-4 py-2 hover:bg-blue-100">Blog</a>
+        <a href="#" class="block px-4 py-2 hover:bg-blue-100">Portfolio</a>
+        <a href="#" class="block px-4 py-2 hover:bg-blue-100">FAQ</a>
+      </div>
+    </div>
+
+    <button class="w-full mt-2 px-5 py-2 rounded-lg font-medium text-blue-800 bg-white shadow-md hover:bg-blue-500 hover:text-white">
+      Sign In
+    </button>
+  </div>
+</header>
+
+<main class="px-6 md:px-20 py-16 min-h-screen bg-gradient-to-b from-white to-blue-200">
+  <h1 class="text-3xl font-bold mb-8 text-center text-blue-900">Your Cart</h1>
+
+  <div class="flex flex-col md:flex-row gap-8">
+    <!-- Cart Items -->
+    <div id="cart-items" class="flex-1 space-y-6"></div>
+
+    <!-- Summary / Checkout -->
+    <div class="w-full md:w-96 p-6 rounded-lg shadow-lg space-y-4 bg-gradient-to-br from-blue-400 to-blue-600 text-white">
+      <h2 class="text-xl font-bold">Order Summary</h2>
+      <div class="flex justify-between">
+        <span>Subtotal</span>
+        <span id="subtotal">R0</span>
+      </div>
+      <div class="flex justify-between">
+        <span>VAT (15%)</span>
+        <span id="vat">R0</span>
+      </div>
+      <div class="flex justify-between font-bold text-lg">
+        <span>Total</span>
+        <span id="total">R0</span>
+      </div>
+      <button id="clear-cart-btn" onclick="clearCart()" class="w-full bg-red-500 text-white px-4 py-2 rounded mt-2 hover:bg-red-600 transition font-semibold">
+        Clear Cart
+      </button>
+	  <a href="pay.html">
+      <button id="checkout-btn" onclick="proceedToCheckout()" class="w-full mt-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white py-3 rounded-lg hover:from-blue-600 hover:to-blue-800 transition font-semibold">
+        Proceed to Checkout
+      </button>
+	  </a>
+    </div>
+  </div>
+</main>
+
+<footer class="text-white"
+         style="
+         background: linear-gradient(90deg, #00195d, #0092f5);">
+  <div class="max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-4 gap-8">
+
+    <!-- About / Brand -->
+    <div class="space-y-2">
+      <h2 class="text-xl font-semibold">BluePlanet Utilities</h2>
+      <p class="text-sm opacity-90">
+        Affordable • Reliable • Safe Energy
+      </p>
+      <p class="text-sm opacity-90">Designed and maintained by BluePlanet Utilities</p>
+    </div>
+
+    <!-- Contact Info -->
+    <div>
+      <h3 class="text-lg font-semibold">Contact</h3>
+      <p class="text-sm">Email: <a href="mailto:support@blueplanet.co.za" class="hover:underline">support@blueplanet.co.za</a></p>
+      <p class="text-sm">Phone: <a href="tel:+27621028828" class="hover:underline">+27 62 102 8828</a></p>
+      <p class="text-sm">Address: 123 BluePlanet Street, Pretoria, South Africa</p>
+      <p class="text-sm">Hours: Mon-Fri 08:00-17:00</p>
+    </div>
+
+    <!-- Social Media -->
+    <div>
+      <h3 class="text-lg font-semibold mb-2">Follow Us</h3>
+      <div class="flex gap-4 text-white">
+        <a href="#" class="hover:text-blue-300" aria-label="LinkedIn"><i class="fa-brands fa-linkedin fa-lg"></i></a>
+        <a href="#" class="hover:text-blue-300" aria-label="Twitter"><i class="fa-brands fa-twitter fa-lg"></i></a>
+        <a href="#" class="hover:text-blue-300" aria-label="Facebook"><i class="fa-brands fa-facebook fa-lg"></i></a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="text-center text-sm pb-4">
+    <p class="opacity-80">© 2025 BluePlanet. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+// Initialize cart if empty
+if (!localStorage.getItem('cart')) {
+    const initialCart = [
+        { id: 1, name: 'LPG Cylinder 12kg', price: 350, qty: 1, img: 'https://example.com/lpg-cylinder.png' },
+        { id: 2, name: '1 Plate Gas Stove', price: 450, qty: 1, img: 'https://example.com/gas-stove.png' }
+    ];
+    localStorage.setItem('cart', JSON.stringify(initialCart));
+}
+
+const cartItemsEl = document.getElementById('cart-items');
+
+function renderCart() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cartItemsEl.innerHTML = '';
+
+    if (cart.length === 0) {
+        cartItemsEl.innerHTML = `
+            <div class="text-center py-10 text-blue-900">
+                <p class="text-lg font-semibold mb-2">Your cart is empty</p>
+                <p>Add some products to get started!</p>
+                <img src="https://cdn-icons-png.flaticon.com/512/1170/1170576.png" alt="Empty Cart" class="mx-auto mt-4 w-32 h-32 opacity-50">
+            </div>
+        `;
+        return;
+    }
+
+    cart.forEach(item => {
+        const itemEl = document.createElement('div');
+        itemEl.className = 'flex flex-col md:flex-row items-center justify-between bg-gradient-to-r from-blue-100 to-blue-200 p-4 rounded-lg shadow-md mb-2';
+        itemEl.innerHTML = `
+            <div class="flex items-center gap-4 mb-2 md:mb-0">
+                <img src="${item.img}" alt="${item.name}" class="w-24 h-24 object-cover rounded">
+                <div>
+                    <h2 class="font-semibold text-blue-900">${item.name}</h2>
+                    <p class="text-blue-700">High-quality product</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <button class="bg-blue-300 text-blue-900 px-2 rounded hover:bg-blue-400" data-action="decrease" data-id="${item.id}">-</button>
+                <input type="number" value="${item.qty}" min="1" class="w-16 p-1 border rounded text-center" data-id="${item.id}">
+                <button class="bg-blue-300 text-blue-900 px-2 rounded hover:bg-blue-400" data-action="increase" data-id="${item.id}">+</button>
+                <span class="font-bold text-blue-900">R${item.price * item.qty}</span>
+                <button class="text-red-500 hover:text-red-700 font-bold" data-action="remove" data-id="${item.id}">Remove</button>
+            </div>
+        `;
+        cartItemsEl.appendChild(itemEl);
+    });
+
+    // Update totals
+    let subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+    const vat = Math.round(subtotal * 0.15);
+    const total = subtotal + vat;
+    document.getElementById('subtotal').textContent = `R${subtotal}`;
+    document.getElementById('vat').textContent = `R${vat}`;
+    document.getElementById('total').textContent = `R${total}`;
+
+    // Add event listeners dynamically
+    cartItemsEl.querySelectorAll('button[data-action], input[type="number"]').forEach(el => {
+        const id = Number(el.dataset.id);
+        const action = el.dataset.action;
+
+        if (action === 'increase') {
+            el.onclick = () => updateQty(id, getItemQty(id) + 1);
+        } else if (action === 'decrease') {
+            el.onclick = () => updateQty(id, getItemQty(id) - 1);
+        } else if (action === 'remove') {
+            el.onclick = () => removeItem(id);
+        } else if (el.type === 'number') {
+            el.onchange = () => updateQty(id, Number(el.value));
+        }
+    });
+}
+
+// Helper: get current qty of item
+function getItemQty(id) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const item = cart.find(i => i.id === id);
+    return item ? item.qty : 1;
+}
+
+function updateQty(id, qty) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart = cart.map(item => {
+        if (item.id === id) item.qty = Math.max(1, qty);
+        return item;
+    });
+    localStorage.setItem('cart', JSON.stringify(cart));
+    renderCart();
+}
+
+function removeItem(id) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart = cart.filter(item => item.id !== id);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    renderCart();
+}
+
+function clearCart() {
+    if (confirm('Are you sure you want to clear the cart?')) {
+        localStorage.removeItem('cart');
+        renderCart();
+    }
+}
+
+function proceedToCheckout() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart.length === 0) return alert('Your cart is empty');
+
+    fetch('/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cart })
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert('Checkout initiated!');
+        localStorage.removeItem('cart');
+        renderCart();
+    })
+    .catch(err => alert('Error sending cart: ' + err));
+}
+
+// Initial render
+renderCart();
+</script>
+</body>
+</html>

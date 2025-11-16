@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contracts & Subscriptions - Manager Panel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    .sidebar-bg {
+      background: linear-gradient(180deg, #0ea5e9, #3b82f6, #60a5fa);
+    }
+    .btn-gradient {
+      background: linear-gradient(90deg,#3b82f6,#0ea5e9);
+    }
+  </style>
+</head>
+<body class="flex h-screen font-sans bg-gray-100">
+
+  <!-- Sidebar -->
+  <aside class="w-64 sidebar-bg text-white flex flex-col">
+    <div class="p-6 flex flex-col items-center gap-2">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/LPG_gas_cylinder_icon.png" 
+           alt="Logo" class="w-16 h-16 rounded-full shadow-md bg-white p-1">
+      <h1 class="text-xl font-bold">BluePlanet</h1>
+      <span class="text-sm opacity-80">Manager Panel</span>
+    </div>
+    <nav class="mt-8 flex-1">
+      <a href="admin.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+      <a href="customerManage.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-users"></i> Customers</a>
+      <a href="serviceManage.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-gear"></i> Services</a>
+      <a href="contracts.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-file-contract"></i> Contracts</a>
+      <a href="manageOrders.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-box"></i> Orders</a>
+	  <a href="sales.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-box"></i> Sales</a>
+      <a href="reports.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-chart-line"></i> Reports</a>
+      <a href="settings.html" class="flex items-center px-6 py-3 hover:bg-blue-700 transition rounded-md gap-3"><i class="fa-solid fa-user-gear"></i> Settings</a>
+    </nav>
+    <div class="p-6">
+      <button class="w-full px-4 py-2 rounded-lg font-bold text-blue-600 bg-white hover:brightness-110">Logout</button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="flex-1 flex flex-col overflow-y-auto">
+    <!-- Topbar -->
+    <header class="flex justify-between items-center px-6 py-4 shadow-md bg-white sticky top-0 z-10">
+      <h2 class="text-2xl font-semibold text-gray-700">Contracts & Subscriptions</h2>
+      <div class="flex items-center gap-4">
+        <div class="relative">
+          <input type="text" placeholder="Search contracts..." class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
+          <i class="fa-solid fa-magnifying-glass absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+        </div>
+        <button class="relative text-gray-600 hover:text-gray-800">
+          <i class="fa-solid fa-bell"></i>
+          <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Dashboard Content -->
+    <main class="p-6 space-y-8">
+      <!-- Action Buttons -->
+      <div class="flex justify-end gap-4">
+        <button class="btn-gradient text-white px-6 py-2 rounded-lg shadow-md hover:brightness-110 flex items-center gap-2">
+          <i class="fa-solid fa-plus"></i> Add New Contract
+        </button>
+        <button class="btn-gradient text-white px-6 py-2 rounded-lg shadow-md hover:brightness-110 flex items-center gap-2">
+          <i class="fa-solid fa-upload"></i> Import Contracts
+        </button>
+      </div>
+
+      <!-- Contracts Table -->
+      <div class="bg-white rounded-xl shadow-md p-6 overflow-x-auto">
+        <table class="min-w-full table-auto">
+          <thead>
+            <tr class="bg-blue-100 text-left text-gray-700">
+              <th class="px-4 py-2">Contract ID</th>
+              <th class="px-4 py-2">Customer Name</th>
+              <th class="px-4 py-2">Service</th>
+              <th class="px-4 py-2">Start Date</th>
+              <th class="px-4 py-2">End Date</th>
+              <th class="px-4 py-2">Status</th>
+              <th class="px-4 py-2">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <tr class="border-b hover:bg-gray-50">
+              <td class="px-4 py-2">C-001</td>
+              <td class="px-4 py-2">Greenwood School</td>
+              <td class="px-4 py-2">LPG Supply</td>
+              <td class="px-4 py-2">2025-01-01</td>
+              <td class="px-4 py-2">2025-12-31</td>
+              <td class="px-4 py-2 text-green-600 font-semibold">Active</td>
+              <td class="px-4 py-2 flex gap-2">
+                <button class="px-3 py-1 rounded bg-yellow-400 text-white hover:brightness-110 flex items-center gap-1"><i class="fa-solid fa-pen"></i>Edit</button>
+                <button class="px-3 py-1 rounded bg-red-500 text-white hover:brightness-110 flex items-center gap-1"><i class="fa-solid fa-trash"></i>Delete</button>
+              </td>
+            </tr>
+            <tr class="border-b hover:bg-gray-50">
+              <td class="px-4 py-2">C-002</td>
+              <td class="px-4 py-2">Sunrise Restaurant</td>
+              <td class="px-4 py-2">Refill Service</td>
+              <td class="px-4 py-2">2025-02-15</td>
+              <td class="px-4 py-2">2026-02-14</td>
+              <td class="px-4 py-2 text-green-600 font-semibold">Active</td>
+              <td class="px-4 py-2 flex gap-2">
+                <button class="px-3 py-1 rounded bg-yellow-400 text-white hover:brightness-110 flex items-center gap-1"><i class="fa-solid fa-pen"></i>Edit</button>
+                <button class="px-3 py-1 rounded bg-red-500 text-white hover:brightness-110 flex items-center gap-1"><i class="fa-solid fa-trash"></i>Delete</button>
+              </td>
+            </tr>
+            <!-- Add more rows as needed -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>
